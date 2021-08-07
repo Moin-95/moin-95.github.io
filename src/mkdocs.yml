@@ -1,0 +1,14 @@
+site_name: ar2pi
+site_url: https://ar2pi.github.io
+repo_url: https://github.com/ar2pi/ar2pi.github.io/
+remote_branch: main
+
+nav:
+  - About: index.md
+  - Python: python.md
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
