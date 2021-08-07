@@ -56,6 +56,10 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#local-setup">Local setup</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#generate-a-requirementstxt-file">Generate a requirements.txt file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-dependencies-from-a-requirementstxt-file">Install dependencies from a requirements.txt file</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#containerized-python-development">Containerized Python development</a>
     </li>
     </ul>
@@ -85,7 +89,7 @@
     <li>Python</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ar2pi/ar2pi.github.io/edit/master/docs/python.md"
+        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/python.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -109,7 +113,7 @@ echo 'eval &quot;$(pyenv virtualenv-init -)&quot;' &gt;&gt; ~/.zshrc
 <blockquote>
 <p><code>pyenv-virtualenv</code> uses <code>python -m venv</code> (Python 3.3+) if it is available and the <code>virtualenv</code> command if not.</p>
 </blockquote>
-<p>Install <a href="">Python 3</a></p>
+<p>Install <a href="https://www.python.org/download/releases/3.0/">Python 3</a></p>
 <pre><code class="language-sh"># list possible python versions
 pyenv install --list
 # install a python version
@@ -129,6 +133,17 @@ pyenv virtualenvs
 
 # delete existing virtualenv
 pyenv uninstall python3
+</code></pre>
+<h2 id="generate-a-requirementstxt-file">Generate a requirements.txt file</h2>
+<pre><code class="language-sh"># create new isolated virtualenv
+pyenv virtualenv 3.9.5 NAME
+# install dependencies 
+pip install DEPENDENCY_1 DEPENDENCY_2
+# freeze requirements
+pip freeze &gt; requirements.txt
+</code></pre>
+<h2 id="install-dependencies-from-a-requirementstxt-file">Install dependencies from a requirements.txt file</h2>
+<pre><code class="language-sh">pip install -r requirements.txt
 </code></pre>
 <h2 id="containerized-python-development">Containerized Python development</h2>
 <ul>
@@ -168,7 +183,7 @@ pyenv uninstall python3
   <span class="rst-current-version" data-toggle="rst-current-version">
     
         <span>
-          <a href="https://github.com/ar2pi/ar2pi.github.io/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/ar2pi/ar2pi/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
         </span>
     
     
