@@ -106,9 +106,19 @@
 <p>Install <a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a></p>
 <pre><code class="language-sh">brew install pyenv-virtualenv
 
-echo 'eval &quot;$(pyenv init --path)&quot;' &gt;&gt; ~/.zprofile
-echo 'eval &quot;$(pyenv init -)&quot;' &gt;&gt; ~/.zshrc
-echo 'eval &quot;$(pyenv virtualenv-init -)&quot;' &gt;&gt; ~/.zshrc
+echo -n '''
+
+# pyenv
+eval &quot;$(pyenv init --path)
+''' &gt;&gt; ~/.zprofile
+
+echo -n '''
+
+# pyenv
+eval &quot;$(pyenv init -)&quot;
+# pyenv-virtualenv
+eval &quot;$(pyenv virtualenv-init -)&quot;
+''' &gt;&gt; ~/.zshrc
 </code></pre>
 <blockquote>
 <p><code>pyenv-virtualenv</code> uses <code>python -m venv</code> (Python 3.3+) if it is available and the <code>virtualenv</code> command if not.</p>
