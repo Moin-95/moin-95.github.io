@@ -113,7 +113,7 @@
               
                 <h1 id="linux">Linux</h1>
 <h2 id="get-current-release-version">Get current release version</h2>
-<pre><code class="language-sh">cat /etc/os-release | sed -nr &quot;s/VERSION=\&quot;(.*)\&quot;/\1/p&quot;
+<pre><code class="language-sh">cat /etc/os-release | sed -nE &quot;s/VERSION=\&quot;(.*)\&quot;/\1/p&quot;
 </code></pre>
 <h2 id="get-ubuntu-base-debian-version">Get Ubuntu base debian version</h2>
 <pre><code class="language-sh">ubuntu_version=xenial

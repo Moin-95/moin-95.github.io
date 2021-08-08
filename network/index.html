@@ -65,8 +65,20 @@
     <li class="toctree-l2"><a class="reference internal" href="#show-internal-ip-address">Show internal IP address</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#ipv4">IPv4</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#on-mac">On Mac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#on-linux-debian">On Linux (Debian)</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#ipv6">IPv6</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#on-mac_1">On Mac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#on-linux-debian_1">On Linux (Debian)</a>
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -114,18 +126,18 @@
                 <h1 id="network">Network</h1>
 <h2 id="show-internal-ip-address">Show internal IP address</h2>
 <h3 id="ipv4">IPv4</h3>
-<p>On Mac</p>
+<h4 id="on-mac">On Mac</h4>
 <pre><code class="language-sh">ifconfig en0 | grep -oE &quot;inet ([^ ]+)&quot; | cut -d &quot; &quot; -f 2
 </code></pre>
-<p>On Linux (Debian)</p>
-<pre><code class="language-sh">ifconfig en0 | grep -oE &quot;inet6 ([^ ]+)&quot; | cut -d &quot; &quot; -f 2
+<h4 id="on-linux-debian">On Linux (Debian)</h4>
+<pre><code class="language-sh">ip addr show enp4s0 | grep -oE &quot;inet ([^/]+)&quot; | cut -d &quot; &quot; -f 2
 </code></pre>
 <h3 id="ipv6">IPv6</h3>
-<p>On Mac</p>
+<h4 id="on-mac_1">On Mac</h4>
 <pre><code class="language-sh">ifconfig en0 | grep -oE &quot;inet6 ([^ ]+)&quot; | cut -d &quot; &quot; -f 2
 </code></pre>
-<p>On Linux (Debian)</p>
-<pre><code class="language-sh">ifconfig en0 | grep -oE &quot;inet6 ([^ ]+)&quot; | cut -d &quot; &quot; -f 2
+<h4 id="on-linux-debian_1">On Linux (Debian)</h4>
+<pre><code class="language-sh">ip addr show enp4s0 | grep -oE &quot;inet6 ([^/]+)&quot; | cut -d &quot; &quot; -f 2
 </code></pre>
 <h2 id="show-public-ip-address">Show public IP address</h2>
 <pre><code class="language-sh">curl ifconfig.me/ip
