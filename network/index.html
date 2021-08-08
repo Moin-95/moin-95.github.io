@@ -113,6 +113,7 @@
               
                 <h1 id="network">Network</h1>
 <h2 id="show-internal-ip-address">Show internal IP address</h2>
+<hr />
 <h4 id="on-mac">On Mac</h4>
 <pre><code class="language-sh"># IPv4
 ifconfig en0 | grep -oE &quot;inet ([^ ]+)&quot; | cut -d &quot; &quot; -f 2
@@ -125,6 +126,7 @@ ip addr show enp4s0 | grep -oE &quot;inet ([^/]+)&quot; | cut -d &quot; &quot; -
 # IPv6
 ip addr show enp4s0 | grep -oE &quot;inet6 ([^/]+)&quot; | cut -d &quot; &quot; -f 2
 </code></pre>
+<hr />
 <h2 id="show-public-ip-address">Show public IP address</h2>
 <pre><code class="language-sh">curl ifconfig.me/ip
 </code></pre>
