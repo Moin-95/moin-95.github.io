@@ -58,9 +58,15 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Linux</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#get-current-release-version">Get current release version</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get-ubuntu-base-debian-version">Get Ubuntu base debian version</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#add-user-to-sudoers">Add user to sudoers</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#modify-path-env-variable">Modify PATH env variable</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-an-additional-ppa-for-newer-or-extra-packages">Adding an additional PPA for newer or extra packages</a>
     </li>
     </ul>
                     </li>
@@ -106,12 +112,30 @@
             <div class="section">
               
                 <h1 id="linux">Linux</h1>
+<h2 id="get-current-release-version">Get current release version</h2>
+<pre><code class="language-sh">cat /etc/os-release | sed -nr &quot;s/VERSION=\&quot;(.*)\&quot;/\1/p&quot;
+</code></pre>
+<h2 id="get-ubuntu-base-debian-version">Get Ubuntu base debian version</h2>
+<pre><code class="language-sh">ubuntu_version=xenial
+curl https://git.launchpad.net/ubuntu/+source/base-files/plain/etc/debian_version?h=ubuntu/$ubuntu_version
+</code></pre>
 <h2 id="add-user-to-sudoers">Add user to sudoers</h2>
 <pre><code class="language-sh">echo 'username ALL=(ALL) ALL' &gt; /etc/sudoers.d/username
 sudo chmod 440 /etc/sudoers.d/username
 </code></pre>
 <h2 id="modify-path-env-variable">Modify PATH env variable</h2>
 <pre><code class="language-sh">PATH=$PATH:/path/to/bin
+</code></pre>
+<h2 id="adding-an-additional-ppa-for-newer-or-extra-packages">Adding an additional PPA for newer or extra packages</h2>
+<pre><code class="language-sh"># https://launchpad.net/~git-core/+archive/ubuntu/ppa
+echo '''
+deb http://ppa.launchpad.net/git-core/ppa/ubuntu/ xenial main
+# deb-src http://ppa.launchpad.net/git-core/ppa/ubuntu/ xenial main
+''' | sudo tee -a /etc/apt/sources.list.d/git-core-ubuntu-ppa-xenial.list
+
+curl https://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0xe1dd270288b4e6030699e45fa1715d88e1df1f24 | sudo apt-key add
+
+sudo apt-get update &amp;&amp; sudo apt-get upgrade
 </code></pre>
               
             </div>
