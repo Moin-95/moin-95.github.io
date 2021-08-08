@@ -55,6 +55,12 @@
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Python</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#local-setup">Local setup</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#on-mac">On Mac</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#on-linux-debian">On Linux (Debian)</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#generate-a-python-version-file">Generate a .python-version file</a>
     </li>
@@ -113,11 +119,14 @@
               
                 <h1 id="python">Python</h1>
 <h2 id="local-setup">Local setup</h2>
-<p>Install <a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a></p>
-<p>On Mac</p>
+<p>Install <a href="https://github.com/pyenv/pyenv">pyenv</a> and <a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a>. Respectively for Python version management and virtualenvs management. </p>
+<blockquote>
+<p><code>pyenv-virtualenv</code> uses <code>python -m venv</code> (Python 3.3+) if it is available and the <code>virtualenv</code> command if not.</p>
+</blockquote>
+<h4 id="on-mac">On Mac</h4>
 <pre><code class="language-sh">brew install pyenv-virtualenv
 </code></pre>
-<p>On Linux (Debian)</p>
+<h4 id="on-linux-debian">On Linux (Debian)</h4>
 <pre><code class="language-sh">sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
   libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
   libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
@@ -136,9 +145,6 @@ eval &quot;$(pyenv virtualenv-init -)&quot;
 
 source ~/.zshrc
 </code></pre>
-<blockquote>
-<p><code>pyenv-virtualenv</code> uses <code>python -m venv</code> (Python 3.3+) if it is available and the <code>virtualenv</code> command if not.</p>
-</blockquote>
 <p>Configure a <a href="https://www.python.org/download/releases/3.0/">Python 3</a> env</p>
 <pre><code class="language-sh"># list possible python versions
 pyenv install --list | grep 3.9 | less
