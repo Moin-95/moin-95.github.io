@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://ar2pi.github.io/</loc>
+         <loc>https://docs.ar2pi.net/</loc>
          <lastmod>2021-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ar2pi.github.io/network/</loc>
+         <loc>https://docs.ar2pi.net/network/</loc>
          <lastmod>2021-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ar2pi.github.io/python/</loc>
+         <loc>https://docs.ar2pi.net/python/</loc>
          <lastmod>2021-08-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
