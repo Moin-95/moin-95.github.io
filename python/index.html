@@ -125,19 +125,15 @@
 curl https://pyenv.run | bash
 </code></pre>
 <pre><code class="language-sh">echo '''
-# pyenv
+# pyenv-virtualenv
+# see https://github.com/pyenv/pyenv-virtualenv
 export PYENV_ROOT=&quot;$HOME/.pyenv&quot;
 export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;
-eval &quot;$(pyenv init --path)
-''' &gt;&gt; ~/.zprofile
-
-echo '''
-# pyenv-virtualenv
+eval &quot;$(pyenv init --path)&quot;
 eval &quot;$(pyenv init -)&quot;
 eval &quot;$(pyenv virtualenv-init -)&quot;
 ''' &gt;&gt; ~/.zshrc
 
-source ~/.zprofile
 source ~/.zshrc
 </code></pre>
 <blockquote>
