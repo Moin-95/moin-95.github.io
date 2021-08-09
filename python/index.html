@@ -62,6 +62,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configure-a-python-3-virtualenv">Configure a Python 3 virtualenv</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#generate-a-python-version-file">Generate a .python-version file</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#generate-a-requirementstxt-file">Generate a requirements.txt file</a>
@@ -74,11 +76,15 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../linux/">Linux</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../git/">Git</a>
                     </li>
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../network/">Network</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../linux-debian/">Linux (Debian)</a>
                     </li>
                 </ul>
       </div>
@@ -121,7 +127,7 @@
 <h2 id="local-setup">Local setup</h2>
 <p>Install <a href="https://github.com/pyenv/pyenv">pyenv</a> and <a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a>. Respectively for Python version management and virtualenvs management. </p>
 <blockquote>
-<p><code>pyenv-virtualenv</code> uses <code>python -m venv</code> (Python 3.3+) if it is available and the <code>virtualenv</code> command if not.</p>
+<p><code>pyenv-virtualenv</code> uses <code>python -m venv</code> (Python 3.3+) if it is available and the <code>virtualenv</code> command if not</p>
 </blockquote>
 <hr />
 <h4 id="on-mac">On Mac</h4>
@@ -147,45 +153,37 @@ eval &quot;$(pyenv virtualenv-init -)&quot;
 
 source ~/.zshrc
 </code></pre>
-<p>Configure a <a href="https://www.python.org/download/releases/3.0/">Python 3</a> env</p>
-<pre><code class="language-sh"># list possible python versions
-pyenv install --list | grep 3.9 | less
-# install a python version
-pyenv install 3.9.6
+<h2 id="configure-a-python-3-virtualenv">Configure a <a href="https://www.python.org/download/releases/3.0/">Python 3</a> virtualenv</h2>
+<pre><code class="language-sh">pyenv install --list | grep 3.9 | less # list possible python versions
 
-# create a new virtualenv
-pyenv virtualenv 3.9.6 python3
-# activate a virtualenv
-pyenv activate python3
-# deactivate a virtualenv
-pyenv deactivate
-
-# path to python executable
-pyenv which python
-# list available virtualenvs
-pyenv virtualenvs
-
-# delete existing virtualenv
-pyenv uninstall python3
+pyenv install 3.9.6 # install a python version
+pyenv virtualenv 3.9.6 python3 # create a new virtualenv
+pyenv activate python3 # activate virtualenv
 </code></pre>
-<h2 id="generate-a-python-version-file">Generate a .python-version file</h2>
-<p><code>.python-version</code> is used by <code>pyenv-virtualenv</code> to automatically switch to correct env.</p>
+<p>Other useful <code>pyenv</code> commands:</p>
+<pre><code class="language-sh">pyenv deactivate # deactivate current virtualenv
+
+pyenv versions # list installed python versions and available virtualenvs
+pyenv which python # see path to python executable
+pyenv version-name # see current virtualenv
+
+pyenv uninstall python3 # remove virtualenv / python version
+</code></pre>
+<h2 id="generate-a-python-version-file">Generate a <code>.python-version</code> file</h2>
 <pre><code class="language-sh">pyenv version-name &gt; .python-version 
 </code></pre>
-<h2 id="generate-a-requirementstxt-file">Generate a requirements.txt file</h2>
-<pre><code class="language-sh"># create a new virtualenv
-pyenv virtualenv 3.9.6 NAME
-# install dependencies 
-pip install DEPENDENCY_1 DEPENDENCY_2
-# freeze requirements
-pip freeze &gt; requirements.txt
+<p><code>.python-version</code> is then used by <code>pyenv-virtualenv</code> to automatically switch to correct virtualenv.</p>
+<h2 id="generate-a-requirementstxt-file">Generate a <code>requirements.txt</code> file</h2>
+<pre><code class="language-sh">pyenv virtualenv 3.9.6 [VENV_NAME] # create a new virtualenv
+pip install [DEPENDENCY_1] [...] # install dependencies
+pip freeze &gt; requirements.txt # freeze requirements
 </code></pre>
 <h2 id="install-dependencies-from-a-requirementstxt-file">Install dependencies from a requirements.txt file</h2>
 <pre><code class="language-sh">pip install -r requirements.txt
 </code></pre>
 <h2 id="containerized-python-development">Containerized Python development</h2>
 <ul>
-<li><a href="https://www.docker.com/blog/tag/python-env-series/">Docker blog post series</a></li>
+<li><a href="https://www.docker.com/blog/tag/python-env-series/">Read the Docker blog post series</a></li>
 </ul>
               
             </div>
@@ -194,7 +192,7 @@ pip freeze &gt; requirements.txt
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../linux/" class="btn btn-neutral float-right" title="Linux">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../git/" class="btn btn-neutral float-right" title="Git">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href=".." class="btn btn-neutral" title="About"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -230,7 +228,7 @@ pip freeze &gt; requirements.txt
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../linux/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../git/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

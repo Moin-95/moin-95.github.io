@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Arthur Picerna">
-  <link rel="canonical" href="https://docs.ar2pi.net/network/">
+  <link rel="canonical" href="https://docs.ar2pi.net/git/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Network - ar2pi</title>
+  <title>Git - ar2pi</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Network";
-    var mkdocs_page_input_path = "network.md";
-    var mkdocs_page_url = "/network/";
+    var mkdocs_page_name = "Git";
+    var mkdocs_page_input_path = "git.md";
+    var mkdocs_page_url = "/git/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -55,24 +55,22 @@
                     <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../git/">Git</a>
-                    </li>
-                </ul>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Network</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Git</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#show-internal-ip-address">Show internal IP address</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#on-mac">On Mac</a>
+    <li class="toctree-l2"><a class="reference internal" href="#generate-a-ssh-key">Generate a ssh key</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#on-linux-debian">On Linux (Debian)</a>
+    <li class="toctree-l2"><a class="reference internal" href="#use-distinct-ssh-keys-between-hosts">Use distinct ssh keys between hosts</a>
     </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#set-a-global-user-for-authoring-commits">Set a global user for authoring commits</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#show-public-ip-address">Show public IP address</a>
+    <li class="toctree-l2"><a class="reference internal" href="#use-a-different-user-for-a-specific-git-project">Use a different user for a specific git project</a>
     </li>
     </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../network/">Network</a>
                     </li>
                 </ul>
                 <ul>
@@ -100,10 +98,10 @@
     
       
     
-    <li>Network</li>
+    <li>Git</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/network.md"
+        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/git.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -115,25 +113,37 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="network">Network</h1>
-<h2 id="show-internal-ip-address">Show internal IP address</h2>
-<hr />
-<h4 id="on-mac">On Mac</h4>
-<pre><code class="language-sh"># IPv4
-ifconfig en0 | grep -oE &quot;inet ([^ ]+)&quot; | cut -d &quot; &quot; -f 2
-# IPv6
-ifconfig en0 | grep -oE &quot;inet6 ([^ ]+)&quot; | cut -d &quot; &quot; -f 2
+                <h1 id="git">Git</h1>
+<h2 id="generate-a-ssh-key">Generate a ssh key</h2>
+<p>Follow the instructions in <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key">GitHub Docs - Generating a new SSH key</a>.</p>
+<h2 id="use-distinct-ssh-keys-between-hosts">Use distinct ssh keys between hosts</h2>
+<p>Add the following in <code>~/.ssh/config</code>, adapting to your specific setup:</p>
+<pre><code class="language-text">Host github.com
+  HostName github.com
+  User git
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/[KEY_1]
+
+Host gitlab.com
+  HostName gitlab.com
+  User git
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/[KEY_2]
 </code></pre>
-<h4 id="on-linux-debian">On Linux (Debian)</h4>
-<pre><code class="language-sh"># IPv4
-ip addr show enp4s0 | grep -oE &quot;inet ([^/]+)&quot; | cut -d &quot; &quot; -f 2
-# IPv6
-ip addr show enp4s0 | grep -oE &quot;inet6 ([^/]+)&quot; | cut -d &quot; &quot; -f 2
+<p>For more options run <a href="https://linux.die.net/man/5/ssh_config">man ssh_config</a>.</p>
+<blockquote>
+<p>In case you need to create <code>~/.ssh/config</code> ensure proper file permissions are set with <code>chmod 600 ~/.ssh/config</code></p>
+</blockquote>
+<h2 id="set-a-global-user-for-authoring-commits">Set a global user for authoring commits</h2>
+<pre><code class="language-sh">git config --global user.name &quot;YOUR_NAME&quot;
+git config --global user.email &quot;your_email@example.com&quot;
 </code></pre>
-<hr />
-<h2 id="show-public-ip-address">Show public IP address</h2>
-<pre><code class="language-sh">curl ifconfig.me/ip
+<h2 id="use-a-different-user-for-a-specific-git-project">Use a different user for a specific git project</h2>
+<p>To use a different user than the one configured globally for authoring commits, run the following in the project folder:</p>
+<pre><code class="language-sh">git config --local user.name &quot;YOUR_NAME&quot;
+git config --local user.email &quot;your_email@example.com&quot;
 </code></pre>
+<p>test</p>
               
             </div>
           </div>
@@ -141,10 +151,10 @@ ip addr show enp4s0 | grep -oE &quot;inet6 ([^/]+)&quot; | cut -d &quot; &quot; 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../linux-debian/" class="btn btn-neutral float-right" title="Linux (Debian)">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../network/" class="btn btn-neutral float-right" title="Network">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../git/" class="btn btn-neutral" title="Git"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../python/" class="btn btn-neutral" title="Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -174,10 +184,10 @@ ip addr show enp4s0 | grep -oE &quot;inet6 ([^/]+)&quot; | cut -d &quot; &quot; 
         </span>
     
     
-      <span><a href="../git/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../python/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../linux-debian/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../network/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
