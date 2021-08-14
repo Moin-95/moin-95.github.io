@@ -74,7 +74,15 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#setup-project">Setup project</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#convert-video-to-prom-metrics">Convert video to prom metrics</a>
+    <li class="toctree-l3"><a class="reference internal" href="#convert-video-to-metrics">Convert video to metrics</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#backfill-metrics-into-prometheus">Backfill metrics into Prometheus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#visualize-output">Visualize output</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#render-frames-through-grafana">Render frames through Grafana</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#merge-everything-back-into-a-video">Merge everything back into a video</a>
     </li>
         </ul>
     </li>
@@ -155,7 +163,8 @@ docker compose up
 </code></pre>
 <pre><code class="language-sh">make dashboards
 </code></pre>
-<h3 id="convert-video-to-prom-metrics">Convert video to prom metrics</h3>
+<h3 id="convert-video-to-metrics">Convert video to metrics</h3>
+<p>We'll be using <a href="https://www.youtube.com/watch?v=QH2-TGUlwu4">Nyan Cat original video</a> for obvious reasons. Go ahead and download, name it <code>nyan_cat.mp4</code> and place the file in the project folder.</p>
 <pre><code class="language-sh">mkdir -p frames/nyan_cat
 ffmpeg -i 'nyan_cat.mp4' -vf 'scale=150:100' -vsync 0 'frames/nyan_cat/out%06d.png'
 
@@ -163,13 +172,16 @@ mkdir -p metrics/nyan_cat
 ulimit -n 8192
 prometheus_video_renderer --project nyan_cat --mode rgb --start-time 1628640000000 # 11-08-2021 00:00:00
 </code></pre>
+<h3 id="backfill-metrics-into-prometheus">Backfill metrics into Prometheus</h3>
 <pre><code class="language-sh">scripts/load.sh nyan_cat
 </code></pre>
-<p>Go to http://localhost:3000/d/pvr-dash-8-rgb/prometheus-video-renderer-8-0?orgId=1&amp;from=1628675100000&amp;to=1628675400000
+<h3 id="visualize-output">Visualize output</h3>
+<p>Go to <a href="http://localhost:3000/d/pvr-dash-8-rgb/prometheus-video-renderer-8-0?orgId=1&amp;from=1628675100000&amp;to=1628675400000">http://localhost:3000/d/pvr-dash-8-rgb/prometheus-video-renderer-8-0?orgId=1&amp;from=1628675100000&amp;to=1628675400000</a>
 <img alt="image" src="../images/nyan_cat.png" /></p>
-<p>Go to http://localhost:8081/render?deviceScaleFactor=1.000000&amp;domain=localhost&amp;encoding=&amp;height=1080&amp;renderKey=TljYdA5Bp7IEU7D7rasBnwc6my7mu5hW&amp;timeout=59&amp;timezone=&amp;url=http://grafana:3000/d/pvr-dash-8-rgb?from%3D1628675100000%26height%3D1080%26timeout%3D59%26to%3D1628675400000%26width%3D1920%26render%3D1&amp;width=1920
+<p>Go to <a href="http://localhost:8081/render?deviceScaleFactor=1.000000&amp;domain=localhost&amp;encoding=&amp;height=1080&amp;renderKey=TljYdA5Bp7IEU7D7rasBnwc6my7mu5hW&amp;timeout=59&amp;timezone=&amp;url=http://grafana:3000/d/pvr-dash-8-rgb?from%3D1628675100000%26height%3D1080%26timeout%3D59%26to%3D1628675400000%26width%3D1920%26render%3D1&amp;width=1920">http://localhost:8081/render?deviceScaleFactor=1.000000&amp;domain=localhost&amp;encoding=&amp;height=1080&amp;renderKey=TljYdA5Bp7IEU7D7rasBnwc6my7mu5hW&amp;timeout=59&amp;timezone=&amp;url=http://grafana:3000/d/pvr-dash-8-rgb?from%3D1628675100000%26height%3D1080%26timeout%3D59%26to%3D1628675400000%26width%3D1920%26render%3D1&amp;width=1920</a>
 <img alt="image" src="../images/nyan_cat_rendered.png" /></p>
-<pre><code>mkdir -p frames/nyan_cat/rendered/video
+<h3 id="render-frames-through-grafana">Render frames through Grafana</h3>
+<pre><code class="language-sh">mkdir -p frames/nyan_cat/rendered/video
 
 grafana-image-renderer-cli sequence \
     --api-url=http://localhost:3000 \
@@ -179,13 +191,16 @@ grafana-image-renderer-cli sequence \
     --frame-interval=5m \
     --out-directory=frames/nyan_cat/rendered \
     --frames=1-500
-
-cd frames/nyan_cat/rendered
+</code></pre>
+<h3 id="merge-everything-back-into-a-video">Merge everything back into a video</h3>
+<p>Now trim your original video to the portion of the video rendered if needed so that the audio can be merged with output. </p>
+<pre><code class="language-sh">cd frames/nyan_cat/rendered
 
 ffmpeg -framerate 30 -i '%06d.png' \
-    -c:v libx264rgb -pix_fmt rgb24 -preset veryslow -crf 0 -qp 0 video/grafanyan_cat.mp4 \
-    -i ../../../nyan_cat.mp4 -c copy -map 0:0 -map 1:1 -c:v libx264rgb -pix_fmt rgb24 video/grafanyan_cat.mp4
+    -i ../../../nyan_cat_trimmed.mp4 -c copy -map 0:0 -map 1:1 -c:v libx264rgb -pix_fmt rgb24 -preset veryslow -crf 0 -qp 0 \
+    video/grafanyan_cat.mp4
 </code></pre>
+<p>Open <code>video/grafanyan_cat.mp4</code> and enjoy ^_^</p>
 <h2 id="resources">Resources</h2>
 <ul>
 <li>https://grafana.com/blog/2021/07/30/how-to-use-grafana-and-prometheus-to-rickroll-your-friends-or-enemies/</li>
