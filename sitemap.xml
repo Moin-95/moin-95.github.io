@@ -11,6 +11,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.ar2pi.net/go/</loc>
+         <lastmod>2021-08-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.ar2pi.net/linux-debian/</loc>
          <lastmod>2021-08-16</lastmod>
          <changefreq>daily</changefreq>
