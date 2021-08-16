@@ -78,6 +78,8 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#performance-counter">Performance counter</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reference-count">Reference count</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#interning">Interning</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#peephole">Peephole</a>
@@ -214,6 +216,11 @@ start = time.perf_counter()
 # ...
 end = time.perf_counter()
 print('timing: {time}'.format(time=(end - start)))
+</code></pre>
+<h3 id="reference-count">Reference count</h3>
+<pre><code class="language-python">import ctypes
+def ref_count(address):
+        return ctypes.c_long.from_address(address).value
 </code></pre>
 <h3 id="interning">Interning</h3>
 <pre><code class="language-python">a = 10
