@@ -76,6 +76,16 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#show-public-ip-address">Show public IP address</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#netcat">netcat</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tcp">TCP</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#http-w-netcat">HTTP w/ netcat</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#redirect-through-netcat">Redirect through netcat</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -142,6 +152,22 @@ ip addr show enp4s0 | grep -oE &quot;inet6 ([^/]+)&quot; | cut -d &quot; &quot; 
 <h2 id="show-public-ip-address">Show public IP address</h2>
 <pre><code class="language-sh">curl ifconfig.me/ip
 </code></pre>
+<h2 id="netcat">netcat</h2>
+<h3 id="tcp">TCP</h3>
+<pre><code class="language-sh"># sh 1
+nc -l 3456
+# sh 2
+nc localhost 3456
+# type in 'hello world'
+</code></pre>
+<p>Open http://localhost:3456 and look at request headers sent to <code>sh 1</code></p>
+<h3 id="http-w-netcat">HTTP w/ netcat</h3>
+<pre><code class="language-sh">printf 'GET / HTTP/1.1\r\nHost: ar2pi.github.com\r\n\r\n' | nc -N ar2pi.github.com 80 &gt; response.html
+</code></pre>
+<h3 id="redirect-through-netcat">Redirect through netcat</h3>
+<pre><code class="language-sh">printf 'HTTP/1.1 302 Moved\r\nLocation: https://docs.ar2pi.net/' | nc -N -l 3456
+</code></pre>
+<p>Open http://localhost:3456 and witness redirect</p>
               
             </div>
           </div>
