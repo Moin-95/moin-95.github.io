@@ -203,18 +203,18 @@ kill -9 PID
 killall -9 PROCESS_NAME
 </code></pre>
 <h2 id="dpkg">dpkg</h2>
-<pre><code class="language-sh">dpkg -l   # List all packages installed
-dpkg --get-selections &quot;*wget*&quot;  # List installed packages with 'wget' in their name
-dpkg -L wget    # List files installed in the wget package
-dpkg -p wget    # Show information about an installed package
-dpkg -I webfs_1.21+ds1-8_amd64.deb  # Show information about a package file
-dpkg -c webfs_1.21+ds1-8_amd64.deb  # List files in a package file
-dpkg -S /etc/init/networking.conf   # Show what package owns /etc/init/networking.conf
-dpkg -s wget    # Show the status of a package
-dpkg -V package # Verify the installed package's integrity
+<pre><code class="language-sh">dpkg -l # list all packages installed
+dpkg --get-selections &quot;*wget*&quot; # list installed packages with 'wget' in their name
+dpkg -L wget # list files installed in the wget package
+dpkg -p wget # show information about an installed package
+dpkg -I webfs_1.21+ds1-8_amd64.deb # show information about a package file
+dpkg -c webfs_1.21+ds1-8_amd64.deb # list files in a package file
+dpkg -S /etc/init/networking.conf # show what package owns /etc/init/networking.conf
+dpkg -s wget # show the status of a package
+dpkg -V package # verify the installed package's integrity
 sudo dpkg -i foobar.deb # installing or upgrading the foobar package
-sudo dpkg -r package        # remove all of an installed package except for its configuration files
-sudo dpkg -P package    # remove all of an installed package, including its configuration files
+sudo dpkg -r package # remove all of an installed package except for its configuration files
+sudo dpkg -P package # remove all of an installed package, including its configuration files
 </code></pre>
 <h2 id="apt">apt</h2>
 <pre><code class="language-sh">[apt|apt-get] update
