@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Arthur Picerna">
-  <link rel="canonical" href="https://docs.ar2pi.net/network/">
+  <link rel="canonical" href="https://docs.ar2pi.net/networking/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Network - ar2pi</title>
+  <title>Networking - ar2pi</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Network";
-    var mkdocs_page_input_path = "network.md";
-    var mkdocs_page_url = "/network/";
+    var mkdocs_page_name = "Networking";
+    var mkdocs_page_input_path = "networking.md";
+    var mkdocs_page_url = "/networking/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -68,7 +68,7 @@
                     </li>
                 </ul>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Network</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Networking</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#show-internal-ip-address">Show internal IP address</a>
         <ul>
@@ -97,6 +97,12 @@
     <li class="toctree-l3"><a class="reference internal" href="#http-w-netcat">HTTP w/ netcat</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#redirect-through-netcat">Redirect through netcat</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tcpdump">tcpdump</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_1"></a>
     </li>
         </ul>
     </li>
@@ -132,10 +138,10 @@
     
       
     
-    <li>Network</li>
+    <li>Networking</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/network.md"
+        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/networking.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -147,7 +153,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="network">Network</h1>
+                <h1 id="networking">Networking</h1>
 <h2 id="show-internal-ip-address">Show internal IP address</h2>
 <hr />
 <h4 id="on-mac">On Mac</h4>
@@ -194,6 +200,13 @@ nc localhost 3456
 <pre><code class="language-sh">printf 'HTTP/1.1 302 Moved\r\nLocation: https://docs.ar2pi.net/' | nc -N -l 3456
 </code></pre>
 <p>Open http://localhost:3456 and witness redirect</p>
+<h2 id="tcpdump">tcpdump</h2>
+<h3 id="_1"></h3>
+<pre><code class="language-sh"># sh 1
+sudo tcpdump -n port 80
+# sh 2
+printf 'GET / HTTP/1.1\r\nHost: ar2pi.github.com\r\n\r\n' | nc -N ar2pi.github.com 80
+</code></pre>
               
             </div>
           </div>
