@@ -101,10 +101,8 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#tcpdump">tcpdump</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_1"></a>
     </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#traceroute">traceroute</a>
     </li>
     </ul>
                     </li>
@@ -201,11 +199,13 @@ nc localhost 3456
 </code></pre>
 <p>Open http://localhost:3456 and witness redirect</p>
 <h2 id="tcpdump">tcpdump</h2>
-<h3 id="_1"></h3>
 <pre><code class="language-sh"># sh 1
 sudo tcpdump -n port 80
 # sh 2
 printf 'GET / HTTP/1.1\r\nHost: ar2pi.github.com\r\n\r\n' | nc -N ar2pi.github.com 80
+</code></pre>
+<h2 id="traceroute">traceroute</h2>
+<pre><code class="language-sh">traceroute -T -p 80 ar2pi.github.com
 </code></pre>
               
             </div>
