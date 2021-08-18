@@ -78,7 +78,17 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#show-default-gateway">Show default gateway</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#on-mac_1">On Mac</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#on-linux-debian_1">On Linux (Debian)</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#show-public-ip-address">Show public IP address</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#show-dns-records">Show DNS records</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#netcat">netcat</a>
         <ul>
@@ -153,8 +163,20 @@ ip addr show enp4s0 | grep -oE &quot;inet ([^/]+)&quot; | cut -d &quot; &quot; -
 ip addr show enp4s0 | grep -oE &quot;inet6 ([^/]+)&quot; | cut -d &quot; &quot; -f 2
 </code></pre>
 <hr />
+<h2 id="show-default-gateway">Show default gateway</h2>
+<hr />
+<h4 id="on-mac_1">On Mac</h4>
+<pre><code class="language-sh">netstat -nr
+</code></pre>
+<h4 id="on-linux-debian_1">On Linux (Debian)</h4>
+<pre><code class="language-sh">ip route show default
+</code></pre>
+<hr />
 <h2 id="show-public-ip-address">Show public IP address</h2>
 <pre><code class="language-sh">curl ifconfig.me/ip
+</code></pre>
+<h2 id="show-dns-records">Show DNS records</h2>
+<pre><code class="language-sh">dig docs.ar2pi.net +nostats +nocomments +nocmd
 </code></pre>
 <h2 id="netcat">netcat</h2>
 <h3 id="tcp">TCP</h3>
