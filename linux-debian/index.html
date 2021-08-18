@@ -84,6 +84,28 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#add-an-additional-ppa-for-newer-or-extra-packages">Add an additional PPA for newer or extra packages</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#show-directories-size-and-last-modified-date">Show directories size and last modified date</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#processes">Processes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#list-processes">List processes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ulimit">ulimit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#identify-shared-memory-segments">Identify shared memory segments</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#signals">Signals</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dpkg">dpkg</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#apt">apt</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -148,6 +170,57 @@ deb http://ppa.launchpad.net/git-core/ppa/ubuntu/ xenial main
 curl https://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0xe1dd270288b4e6030699e45fa1715d88e1df1f24 | sudo apt-key add
 
 sudo apt-get update &amp;&amp; sudo apt-get upgrade
+</code></pre>
+<h2 id="filesystem">Filesystem</h2>
+<p><a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf">Filesystem Hierarchy Standard</a></p>
+<h3 id="show-directories-size-and-last-modified-date">Show directories size and last modified date</h3>
+<pre><code class="language-sh">sudo du --max-depth=1 -ax --si --time /
+</code></pre>
+<p>Note that <code>-x</code> will exclude <code>/dev</code>, <code>/proc</code>, <code>/run</code>, <code>sys</code> since these are pseudo-filesystems which exist in memory only.</p>
+<h2 id="processes">Processes</h2>
+<h3 id="list-processes">List processes</h3>
+<pre><code class="language-sh">ps aux
+pgrep [-a|-l] -u r2 # list all processes by user 'r2'
+</code></pre>
+<h3 id="ulimit">ulimit</h3>
+<pre><code class="language-sh">man limits.conf
+cat /etc/security/limits.conf | less
+ulimit -a [-S|-H] # list all Soft / Hard limits
+ulimit [LIMIT] [-S|-H] [NEW_LIMIT] # get / set new limit
+</code></pre>
+<h3 id="identify-shared-memory-segments">Identify shared memory segments</h3>
+<pre><code class="language-sh">ipcs
+ipcs -p # outputs creator / last operator PIDs
+ps aux | grep -wE -e &quot;2753&quot; -e &quot;851&quot; # see info on processes
+</code></pre>
+<h2 id="signals">Signals</h2>
+<pre><code class="language-sh">for i in {1..31}; do; echo &quot;$i: $(kill -l $i)&quot;; done
+kill -9 PID
+killall -9 PROCESS_NAME
+</code></pre>
+<h2 id="dpkg">dpkg</h2>
+<pre><code class="language-sh">dpkg -l   # List all packages installed
+dpkg --get-selections &quot;*wget*&quot;  # List installed packages with 'wget' in their name
+dpkg -L wget    # List files installed in the wget package
+dpkg -p wget    # Show information about an installed package
+dpkg -I webfs_1.21+ds1-8_amd64.deb  # Show information about a package file
+dpkg -c webfs_1.21+ds1-8_amd64.deb  # List files in a package file
+dpkg -S /etc/init/networking.conf   # Show what package owns /etc/init/networking.conf
+dpkg -s wget    # Show the status of a package
+dpkg -V package # Verify the installed package's integrity
+sudo dpkg -i foobar.deb # installing or upgrading the foobar package
+sudo dpkg -r package        # remove all of an installed package except for its configuration files
+sudo dpkg -P package    # remove all of an installed package, including its configuration files
+</code></pre>
+<h2 id="apt">apt</h2>
+<pre><code class="language-sh">[apt|apt-get] update
+apt list --upgradable 
+[apt|apt-get] upgrade
+[apt|apt-get] autoremove
+[apt|apt-cache] search metapackage # see all metapackages
+[apt|apt-cache] search -n wget # search for packages called 'wget'
+[apt|apt-cache] show wget # show package info
+[apt|apt-cache] [depends|rdepends] wget # show dependencies / reverse deps respectively
 </code></pre>
               
             </div>
