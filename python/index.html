@@ -84,6 +84,16 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#peephole">Peephole</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unpacking-magic">Unpacking magic</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#remove-list-duplicates">Remove list duplicates</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#overwrite-dictionary-values">Overwrite dictionary values</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#nested-unpacking">Nested unpacking</a>
+    </li>
+        </ul>
+    </li>
         </ul>
     </li>
     </ul>
@@ -264,6 +274,20 @@ a is b # True
 
 print(my_func.__code__.co_consts) 
 # (None, 24, 60, 'foo', 2, 'bar', 1440, 'foofoo', ('foo', 'bar'))
+</code></pre>
+<h3 id="unpacking-magic">Unpacking magic</h3>
+<h4 id="remove-list-duplicates">Remove list duplicates</h4>
+<pre><code class="language-python">a = [1, 1, 2, 2, 3, 3]
+a = [*a] = {*a} # a = [1, 2, 3]
+</code></pre>
+<h4 id="overwrite-dictionary-values">Overwrite dictionary values</h4>
+<pre><code class="language-python">a = {'foo': 'bar', 'baz': 'qux'}
+b = {'foo': 'quux', 'quuz': 'courge'}
+b = {**a, **b} # b = {'foo': 'quux', 'baz': 'qux', 'quuz': 'courge'}
+</code></pre>
+<h4 id="nested-unpacking">Nested unpacking</h4>
+<pre><code class="language-python">a, *b, (c, d, e) = [1, 2, 3, 'XYZ']
+# a = 1, b = [2, 3], c = 'X', d = 'Y', e = 'Z'
 </code></pre>
               
             </div>
