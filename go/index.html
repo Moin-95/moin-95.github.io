@@ -62,6 +62,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-a-go-version">Install a Go version</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#docs">Docs</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#package-registry">Package registry</a>
@@ -131,32 +133,34 @@
               
                 <h1 id="go">Go</h1>
 <h2 id="install">Install</h2>
-<p><a href="https://golang.org/doc/install">golang.org/doc/install</a></p>
+<p><a href="https://golang.org/doc/install">golang.org/doc/install</a><br />
+<a href="https://github.com/syndbg/goenv">goenv</a></p>
 <hr />
 <h4 id="on-mac">On Mac</h4>
-<pre><code class="language-sh">brew install golang
-
-cat &lt;&lt;EOF &gt;&gt; ~/.zshrc 
-# go
-export GOPATH=$HOME/go
-export GOBIN=$HOME/go/bin
-export PATH=$PATH:$GOBIN
-EOF
+<pre><code class="language-sh">brew install goenv
 </code></pre>
 <h4 id="on-linux-debian">On Linux (Debian)</h4>
-<pre><code class="language-sh">curl -sSL -O https://golang.org/dl/go1.17.linux-amd64.tar.gz
-rm -rvf /usr/local/go
-sudo tar -C /usr/local -xzf go1.17.linux-amd64.tar.gz
-rm -rvf go1.17.linux-amd64.tar.gz
-
-cat &lt;&lt;EOF &gt;&gt; ~/.zshrc 
-# go
-export GOBIN=/usr/local/go/bin
-export PATH=$PATH:$GOBIN
-EOF
+<pre><code class="language-sh">git clone https://github.com/syndbg/goenv.git ~/.goenv
 </code></pre>
 <hr />
-<pre><code class="language-sh">source ~/.zshrc 
+<pre><code class="language-sh">cat &lt;&lt;EOF &gt;&gt; ~/.zshrc 
+# goenv
+export GOENV_ROOT=&quot;$HOME/.goenv&quot;
+export PATH=&quot;$PATH:$GOENV_ROOT/bin&quot;
+eval &quot;$(goenv init -)&quot;
+export PATH=&quot;$PATH:$GOROOT/bin&quot;
+export PATH=&quot;$PATH:$GOPATH/bin&quot;
+EOF
+
+source ~/.zshrc 
+</code></pre>
+<h2 id="install-a-go-version">Install a Go version</h2>
+<pre><code class="language-sh">goenv install 1.17 # install a go version
+goenv global 1.17.0 # set default global go version
+goenv local 1.17.0 # set project version in .go-version file
+</code></pre>
+<p>Other useful <code>goenv</code> commands:</p>
+<pre><code class="language-sh">goenv version # show current go version
 </code></pre>
 <h2 id="docs">Docs</h2>
 <ul>
