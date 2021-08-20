@@ -104,6 +104,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#traceroute">traceroute</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nmap">nmap</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#socat">socat</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -197,7 +201,7 @@ nc localhost 3456
 <h3 id="redirect-through-netcat">Redirect through netcat</h3>
 <pre><code class="language-sh">printf 'HTTP/1.1 302 Moved\r\nLocation: https://docs.ar2pi.net/' | nc -N -l 3456
 </code></pre>
-<p>Open http://localhost:3456 and witness redirect</p>
+<p>Open <a href="http://localhost:3456">http://localhost:3456</a> and witness redirect</p>
 <h2 id="tcpdump">tcpdump</h2>
 <pre><code class="language-sh"># sh 1
 sudo tcpdump -n port 80
@@ -206,6 +210,12 @@ printf 'GET / HTTP/1.1\r\nHost: ar2pi.github.com\r\n\r\n' | nc -N ar2pi.github.c
 </code></pre>
 <h2 id="traceroute">traceroute</h2>
 <pre><code class="language-sh">traceroute -T -p 80 ar2pi.github.com
+</code></pre>
+<h2 id="nmap">nmap</h2>
+<pre><code class="language-sh">sudo nmap -sS -p 8000 -Pn -n --open 192.168.0.13/24
+</code></pre>
+<h2 id="socat">socat</h2>
+<pre><code class="language-sh">socat tcp-listen:8001,reuseaddr,fork tcp:192.168.0.1:8000
 </code></pre>
               
             </div>
