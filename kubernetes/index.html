@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Arthur Picerna">
-  <link rel="canonical" href="https://docs.ar2pi.net/go/">
+  <link rel="canonical" href="https://docs.ar2pi.net/kubernetes/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Go - ar2pi</title>
+  <title>Kubernetes - ar2pi</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Go";
-    var mkdocs_page_input_path = "go.md";
-    var mkdocs_page_url = "/go/";
+    var mkdocs_page_name = "Kubernetes";
+    var mkdocs_page_input_path = "kubernetes.md";
+    var mkdocs_page_url = "/kubernetes/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -51,24 +51,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="..">About</a>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Go</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#install">Install</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#on-mac">On Mac</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#on-linux-debian">On Linux (Debian)</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#configure-a-go-env">Configure a Go env</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#docs">Docs</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#package-registry">Package registry</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../go/">Go</a>
                     </li>
                 </ul>
                 <ul>
@@ -87,8 +71,24 @@
                     <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../kubernetes/">Kubernetes</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#install-kubectl">Install kubectl</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#on-mac">On Mac</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#on-linux-debian">On Linux (Debian)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#snippets">Snippets</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#output-resource-yaml">Output resource yaml</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <ul>
@@ -120,10 +120,10 @@
     
       
     
-    <li>Go</li>
+    <li>Kubernetes</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/go.md"
+        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/kubernetes.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -135,49 +135,28 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="go">Go</h1>
-<h2 id="install">Install</h2>
-<p><a href="https://golang.org/doc/install">golang.org/doc/install</a><br />
-<a href="https://github.com/syndbg/goenv">goenv</a><br />
-<a href="https://github.com/bwplotka/bingo">bingo</a></p>
+                <h1 id="kubernetes">Kubernetes</h1>
+<h2 id="install-kubectl">Install kubectl</h2>
+<p><a href="https://kubernetes.io/es/docs/tasks/tools/install-kubectl/">https://kubernetes.io/es/docs/tasks/tools/install-kubectl/</a></p>
 <hr />
 <h4 id="on-mac">On Mac</h4>
-<pre><code class="language-sh">brew install goenv # seems outdated, no latest go versions listed
+<pre><code class="language-sh">os_kernel=darwin
 </code></pre>
 <h4 id="on-linux-debian">On Linux (Debian)</h4>
-<pre><code class="language-sh">git clone https://github.com/syndbg/goenv.git ~/.goenv
+<pre><code class="language-sh">os_kernel=linux
 </code></pre>
 <hr />
-<pre><code class="language-sh">cat &lt;&lt;EOF &gt;&gt; ~/.zshrc 
-# goenv
-export GOENV_ROOT=&quot;$HOME/.goenv&quot;
-export PATH=&quot;$PATH:$GOENV_ROOT/bin&quot;
-eval &quot;$(goenv init -)&quot;
-export PATH=&quot;$PATH:$GOROOT/bin&quot;
-export PATH=&quot;$PATH:$GOPATH/bin&quot;
-EOF
-
-source ~/.zshrc 
+<pre><code class="language-sh"># ...
+version=1.20.9
+arch=amd64
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v$version/bin/$os_kernel/$arch/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
 </code></pre>
-<h2 id="configure-a-go-env">Configure a Go env</h2>
-<pre><code class="language-sh">goenv install --list # list go versions
-goenv install 1.17.0 # install a go version
-goenv global 1.17.0 # set default global go version
-goenv local 1.17.0 # set project version in .go-version file
+<h2 id="snippets">Snippets</h2>
+<h3 id="output-resource-yaml">Output resource yaml</h3>
+<pre><code class="language-sh">kubectl [COMMAND] --dry-run=client -o yaml &gt; resource.yaml
 </code></pre>
-<p>Other useful <code>goenv</code> commands:</p>
-<pre><code class="language-sh">goenv version # show current go version
-goenv versions # show installed go versions
-</code></pre>
-<h2 id="docs">Docs</h2>
-<ul>
-<li><a href="https://golang.org/ref/spec">The Go Programming Language Specification</a></li>
-<li><a href="https://pkg.go.dev/std">The Go Standard Library</a></li>
-</ul>
-<h2 id="package-registry">Package registry</h2>
-<ul>
-<li><a href="https://pkg.go.dev/">Go Packages</a></li>
-</ul>
               
             </div>
           </div>
@@ -185,10 +164,10 @@ goenv versions # show installed go versions
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../python/" class="btn btn-neutral float-right" title="Python">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../prometheus-video-renderer/" class="btn btn-neutral float-right" title="Prometheus Video Renderer">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="About"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../networking/" class="btn btn-neutral" title="Networking"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -218,10 +197,10 @@ goenv versions # show installed go versions
         </span>
     
     
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../networking/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../python/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../prometheus-video-renderer/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

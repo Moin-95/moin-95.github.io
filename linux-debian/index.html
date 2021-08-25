@@ -60,7 +60,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../bash/">Bash</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../bash-scripting/">Bash scripting</a>
                     </li>
                 </ul>
                 <ul>
@@ -69,6 +69,10 @@
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../kubernetes/">Kubernetes</a>
                     </li>
                 </ul>
                 <ul>
@@ -91,6 +95,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#show-directories-size-and-last-modified-date">Show directories size and last modified date</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#find-files">Find files</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#list-open-files">List open files</a>
     </li>
         </ul>
     </li>
@@ -181,10 +189,28 @@ sudo apt-get update &amp;&amp; sudo apt-get upgrade
 <pre><code class="language-sh">sudo du --max-depth=1 -ax --si --time /
 </code></pre>
 <p>Note that <code>-x</code> will exclude <code>/dev</code>, <code>/proc</code>, <code>/run</code>, <code>sys</code> since these are pseudo-filesystems which exist in memory only.</p>
+<h3 id="find-files">Find files</h3>
+<pre><code class="language-sh">find ~/Downloads -maxdepth 1 -type f -name &quot;*.mp3&quot;
+</code></pre>
+<h3 id="list-open-files">List open files</h3>
+<pre><code class="language-sh">sudo lsof -a -u r2 -c spotify -p ^9365 -d 0-$(ulimit -S -n) +D /usr | grep -E &quot;REG|DIR&quot; | less
+# get all files / directories under /usr open with an actual file descriptor number by user r2, comand `spotify`, except process 9365
+</code></pre>
+<p>FD mode</p>
+<pre><code>r for read access;
+w for write access;
+u for read and write access;
+</code></pre>
+<p>TYPE</p>
+<pre><code>REG for a directory;
+DIR for a regular file;
+</code></pre>
 <h2 id="processes">Processes</h2>
 <h3 id="list-processes">List processes</h3>
-<pre><code class="language-sh">ps aux
-pgrep [-a|-l] -u r2 # list all processes by user 'r2'
+<pre><code class="language-sh">top
+ps aux
+ps axjf # show process tree
+pgrep -a -u r2 # list all processes by user 'r2'
 </code></pre>
 <h3 id="ulimit">ulimit</h3>
 <pre><code class="language-sh">man limits.conf
@@ -200,6 +226,7 @@ ps aux | grep -wE -e &quot;2753&quot; -e &quot;851&quot; # see info on processes
 <h2 id="signals">Signals</h2>
 <pre><code class="language-sh">for i in {1..31}; do; echo &quot;$i: $(kill -l $i)&quot;; done
 kill -9 PID
+kill -9 $(pgrep -u r2) # kill all processes by user r2
 killall -9 PROCESS_NAME
 </code></pre>
 <h2 id="dpkg">dpkg</h2>

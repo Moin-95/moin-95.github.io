@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Arthur Picerna">
-  <link rel="canonical" href="https://docs.ar2pi.net/bash/">
+  <link rel="canonical" href="https://docs.ar2pi.net/bash-scripting/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Bash - ar2pi</title>
+  <title>Bash scripting - ar2pi</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Bash";
-    var mkdocs_page_input_path = "bash.md";
-    var mkdocs_page_url = "/bash/";
+    var mkdocs_page_name = "Bash scripting";
+    var mkdocs_page_input_path = "bash-scripting.md";
+    var mkdocs_page_url = "/bash-scripting/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -60,11 +60,25 @@
                     </li>
                 </ul>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Bash</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Bash scripting</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#zshrc">.zshrc</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#snippets">Snippets</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#log-function">Log function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#autoload-nvmrc">Autoload .nvmrc</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#adblocksh">Adblock.sh</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#iterate-over-hash-table-associative-array">Iterate over hash table (associative array)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#bash">bash</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zsh">zsh</a>
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -77,6 +91,10 @@
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../kubernetes/">Kubernetes</a>
                     </li>
                 </ul>
                 <ul>
@@ -108,10 +126,10 @@
     
       
     
-    <li>Bash</li>
+    <li>Bash scripting</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/bash.md"
+        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/bash-scripting.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -123,9 +141,11 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="bash">Bash</h1>
+                <h1 id="bash-scripting">Bash scripting</h1>
+<h2 id="zshrc">.zshrc</h2>
+<p>Gist: <a href="https://gist.github.com/ar2pi/41d1d0645d6437d7b69b6e7c64e88d8e">https://gist.github.com/ar2pi/41d1d0645d6437d7b69b6e7c64e88d8e</a></p>
 <h2 id="snippets">Snippets</h2>
-<p><strong><code>#!/usr/bin/env bash</code></strong></p>
+<p><strong><code>#!/usr/bin/env {zsh,bash}</code></strong></p>
 <h3 id="log-function">Log function</h3>
 <pre><code class="language-bash">#!/usr/bin/env bash
 
@@ -165,6 +185,75 @@ function out () {
 }
 </code></pre>
 <p>Gist: <a href="https://gist.github.com/ar2pi/b0c229afe9cd5f7d02645c8c62b5e989">https://gist.github.com/ar2pi/b0c229afe9cd5f7d02645c8c62b5e989</a></p>
+<h3 id="autoload-nvmrc">Autoload .nvmrc</h3>
+<pre><code class="language-zsh">#!/usr/bin/env zsh
+
+#
+# Call `nvm use` automatically in a directory with a .nvmrc file, silently
+#
+# Usage:
+#   Add this to your ~/.zshrc
+#
+# Taken from https://github.com/nvm-sh/nvm#zsh 
+# Difference being that this one is less verbose (like pyenv or goenv)
+#
+
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version=&quot;$(nvm version)&quot;
+  local nvmrc_path=&quot;$(nvm_find_nvmrc)&quot;
+
+  if [[ -n $nvmrc_path ]]; then
+    local nvmrc_node_version=$(nvm version $(cat ${nvmrc_path}))
+
+    if [[ $nvmrc_node_version = &quot;N/A&quot; ]]; then
+      nvm install
+    elif [[ $nvmrc_node_version != $node_version ]]; then
+      nvm use &gt; /dev/null
+    fi
+  elif [[ $node_version != &quot;$(nvm version default)&quot; ]]; then
+    nvm use default &gt; /dev/null
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+</code></pre>
+<p>Gist: <a href="https://gist.github.com/ar2pi/02d14fbc6e987056ae0efd301faf64de">https://gist.github.com/ar2pi/02d14fbc6e987056ae0efd301faf64de</a></p>
+<h3 id="adblocksh">Adblock.sh</h3>
+<pre><code class="language-bash">#!/usr/bin/env bash
+
+#
+# This script will append additional entries (from http://winhelp2002.mvps.org/hosts.txt) in /etc/hosts file.
+# run: &quot;adblock&quot; 
+#
+# Notes:
+#   - A backup is created as `hosts.bk` in current working directory.
+#
+
+cp /etc/hosts hosts.bk
+sudo sh -c &quot;curl -sSL -o - http://winhelp2002.mvps.org/hosts.txt &gt;&gt; /etc/hosts&quot;
+</code></pre>
+<p>Gist: <a href="https://gist.github.com/ar2pi/25d7ffc31cb1695bef557556ded182fe">https://gist.github.com/ar2pi/25d7ffc31cb1695bef557556ded182fe</a></p>
+<h3 id="iterate-over-hash-table-associative-array">Iterate over hash table (associative array)</h3>
+<h4 id="bash">bash</h4>
+<p>Bash 3</p>
+<pre><code class="language-bash">declare -a arr
+# ...
+</code></pre>
+<p>Bash 4</p>
+<pre><code class="language-bash">declare -A arr
+arr=([foo]=bar [baz]=qux)
+for key in ${!arr[@]}; do 
+  echo &quot;$key: $arr[$key]&quot;
+done
+</code></pre>
+<h4 id="zsh">zsh</h4>
+<pre><code class="language-zsh">declare -A arr
+arr=([foo]=bar [baz]=qux)
+for key value in ${(kv)arr}; do 
+  echo &quot;$key: $value&quot;
+done
+</code></pre>
               
             </div>
           </div>

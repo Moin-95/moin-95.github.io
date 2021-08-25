@@ -2,42 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.ar2pi.net/</loc>
-         <lastmod>2021-08-20</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/bash/</loc>
-         <lastmod>2021-08-20</lastmod>
+         <loc>https://docs.ar2pi.net/bash-scripting/</loc>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/git/</loc>
-         <lastmod>2021-08-20</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/go/</loc>
-         <lastmod>2021-08-20</lastmod>
+         <lastmod>2021-08-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://docs.ar2pi.net/kubernetes/</loc>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/linux-debian/</loc>
-         <lastmod>2021-08-20</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/networking/</loc>
-         <lastmod>2021-08-20</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/prometheus-video-renderer/</loc>
-         <lastmod>2021-08-20</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/python/</loc>
-         <lastmod>2021-08-20</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
