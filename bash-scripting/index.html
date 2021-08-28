@@ -236,22 +236,30 @@ sudo sh -c &quot;curl -sSL -o - http://winhelp2002.mvps.org/hosts.txt &gt;&gt; /
 <p>Gist: <a href="https://gist.github.com/ar2pi/25d7ffc31cb1695bef557556ded182fe">https://gist.github.com/ar2pi/25d7ffc31cb1695bef557556ded182fe</a></p>
 <h3 id="iterate-over-hash-table-associative-array">Iterate over hash table (associative array)</h3>
 <h4 id="bash">bash</h4>
-<p>Bash 3</p>
-<pre><code class="language-bash">declare -a arr
-# ...
+<h5 id="bash-v3">bash v3</h5>
+<pre><code class="language-bash">function key_val () {
+    case $1 in
+        &quot;foo&quot;) echo &quot;bar&quot;;;
+        &quot;baz&quot;) echo &quot;qux&quot;;;
+        *) echo &quot;default&quot;;;
+    esac
+}
+for key in &quot;foo&quot; &quot;baz&quot;; do
+    echo &quot;$key: $(key_val $key)&quot;
+done
 </code></pre>
-<p>Bash 4</p>
+<h5 id="bash-v4">bash v4</h5>
 <pre><code class="language-bash">declare -A arr
 arr=([foo]=bar [baz]=qux)
 for key in ${!arr[@]}; do 
-  echo &quot;$key: $arr[$key]&quot;
+    echo &quot;$key: ${arr[$key]}&quot;
 done
 </code></pre>
 <h4 id="zsh">zsh</h4>
 <pre><code class="language-zsh">declare -A arr
 arr=([foo]=bar [baz]=qux)
 for key value in ${(kv)arr}; do 
-  echo &quot;$key: $value&quot;
+    echo &quot;$key: $value&quot;
 done
 </code></pre>
               
