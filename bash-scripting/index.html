@@ -72,6 +72,18 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#adblocksh">Adblock.sh</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get-current-script-directory-and-filename">Get current script directory and filename</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#default-variable-value">Default variable value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#parse-arguments">Parse arguments</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#bash-command-line-argument-parser">Bash command line argument parser</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#load-other-bash-files">Load other bash files</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#iterate-over-hash-table-associative-array">Iterate over hash table (associative array)</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#bash">bash</a>
@@ -234,6 +246,131 @@ cp /etc/hosts hosts.bk
 sudo sh -c &quot;curl -sSL -o - http://winhelp2002.mvps.org/hosts.txt &gt;&gt; /etc/hosts&quot;
 </code></pre>
 <p>Gist: <a href="https://gist.github.com/ar2pi/25d7ffc31cb1695bef557556ded182fe">https://gist.github.com/ar2pi/25d7ffc31cb1695bef557556ded182fe</a></p>
+<h3 id="get-current-script-directory-and-filename">Get current script directory and filename</h3>
+<pre><code class="language-bash">CURRENT_SCRIPT_DIR=$(dirname ${BASH_SOURCE[0]}) # Relative path
+CURRENT_SCRIPT_DIR=$(cd $(dirname ${BASH_SOURCE[0]}) &amp;&amp; pwd) # Absolute path
+CURRENT_SCRIPT_FILE=$(basename ${BASH_SOURCE[0]})
+</code></pre>
+<h3 id="default-variable-value">Default variable value</h3>
+<pre><code class="language-bash">${var:-&quot;default&quot;}
+</code></pre>
+<p>See <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_02">POSIX spec</a></p>
+<h3 id="parse-arguments">Parse arguments</h3>
+<pre><code class="language-bash"># single argument flag
+if [[ ! -z ${1+_} &amp;&amp; ($1 = &quot;-v&quot; || $1 = &quot;--verbose&quot;) ]]; then
+    is_verbose=1
+fi
+
+# single argument with value
+if [[ ! -z ${1+_} &amp;&amp; ($1 = &quot;-n&quot; || $1 = &quot;--name&quot;) ]]; then
+    name=$2
+fi
+
+# multiple args, with positional support
+positional_args=()
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        &quot;-n&quot;|&quot;--name&quot;) name=$2; shift;;
+        &quot;-v&quot;|&quot;--verbose&quot;) is_verbose=1;;
+        *) positional_args+=($1); shift;;
+    esac
+    shift
+done
+</code></pre>
+<h4 id="bash-command-line-argument-parser">Bash command line argument parser</h4>
+<pre><code class="language-bash">#!/usr/bin/env bash
+
+#
+# An over-engineered bash argument parser
+# Inspired from *args and **kwargs in Python
+#
+# Usage:
+#   parse_args &quot;$@&quot;
+#
+# Examples:
+#   script.sh 10 20
+#     args: [10, 20]
+#     kwargs: []
+#   script.sh --foo bar --baz qux 10 20
+#     args: [10, 20]
+#     kwargs: [foo: bar, baz: qux]
+#   script.sh -x 3 -y 2 -z -- 10 20
+#     args: [10, 20]
+#     kwargs: [x: 3, y: 2, z: 1]
+#
+
+declare -a args
+declare -A kwargs
+
+function is_value () {
+    if [[ $(echo $1 | grep -cE &quot;^-&quot;) = 0 ]]; then
+        return 0
+    fi
+    return 1
+}
+
+function parse_args () {
+    local arg
+    local value
+
+    while [[ $# -gt 0 ]]; do
+        if [[ $1 = &quot;--&quot; ]]; then
+            shift; continue
+        elif $(is_value $1); then
+            arg=$1
+        else
+            arg=$(echo $1 | sed -nE &quot;s/--?(.*)/\1/p&quot;)
+        fi
+
+        if [[ ! -z ${2+_} ]] &amp;&amp; $(is_value $2) &amp;&amp; ! $(is_value $1); then
+            kwargs[$arg]=$2
+            shift
+        elif ! $(is_value $1); then
+            kwargs[$arg]=1
+        else
+            args+=($arg)
+        fi
+        shift
+    done
+}
+</code></pre>
+<p>Gist: <a href="https://gist.github.com/ar2pi/0d61686e9c16671a39197139588e94c1">https://gist.github.com/ar2pi/0d61686e9c16671a39197139588e94c1</a></p>
+<h3 id="load-other-bash-files">Load other bash files</h3>
+<pre><code class="language-bash">[[ -f /path/to/script.sh ]] &amp;&amp; . /path/to/script.sh
+</code></pre>
+<pre><code class="language-bash">#!/usr/bin/env bash
+
+#
+# A simple bash script to execute all adjacent scripts
+#
+# Usage:
+#   source /path/to/all.sh
+#   OR
+#   . /path/to/all.sh
+#
+# Options:
+#   -v|--verbose: verbose output
+#
+
+function main () {
+    local CURRENT_SCRIPT_DIR=$(dirname ${BASH_SOURCE[0]})
+    local CURRENT_SCRIPT_FILE=$(basename ${BASH_SOURCE[0]})
+    local modules=$(ls -1 -I $CURRENT_SCRIPT_FILE $CURRENT_SCRIPT_DIR)
+    local is_verbose=$([[ ! -z ${1+_} &amp;&amp; ($1 = &quot;-v&quot; || $1 = &quot;--verbose&quot;) ]] &amp;&amp; echo &quot;1&quot; || echo &quot;0&quot;)
+
+    for module in $modules; do
+        if [[ -f $CURRENT_SCRIPT_DIR/$module ]]; then
+            . $CURRENT_SCRIPT_DIR/$module
+            if [[ $is_verbose = 1 ]]; then
+                echo &quot;Loaded $CURRENT_SCRIPT_DIR/$module&quot;
+            fi
+        fi
+    done
+}
+
+main &quot;$@&quot;
+</code></pre>
+<p>Gist: <a href="https://gist.github.com/ar2pi/d19869c5ba2b2b42601124939593ae89">https://gist.github.com/ar2pi/d19869c5ba2b2b42601124939593ae89</a></p>
 <h3 id="iterate-over-hash-table-associative-array">Iterate over hash table (associative array)</h3>
 <h4 id="bash">bash</h4>
 <h5 id="bash-v3">bash v3</h5>
