@@ -84,6 +84,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#snippets">Snippets</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#parse-arguments">Parse arguments</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#performance-counter">Performance counter</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#reference-count">Reference count</a>
@@ -243,6 +245,19 @@ pip freeze &gt; requirements.txt # freeze requirements
 </ul>
 <h2 id="snippets">Snippets</h2>
 <p><strong><code>#!/usr/bin/env python</code></strong></p>
+<h3 id="parse-arguments">Parse arguments</h3>
+<pre><code class="language-python">import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-v', '--verbose', action='store_true')
+parser.add_argument('-i', '--requests-interval', type=float, default=5)
+args = parser.parse_args()
+
+print(args.verbose, args.requests_interval)
+</code></pre>
+<p>Reference:
+- <a href="https://docs.python.org/3/howto/argparse.html">https://docs.python.org/3/howto/argparse.html</a>
+- <a href="https://docs.python.org/3/library/argparse.html">https://docs.python.org/3/library/argparse.html</a></p>
 <h3 id="performance-counter">Performance counter</h3>
 <p><a href="https://docs.python.org/3/library/time.html#time.perf_counter">time.perf_counter()</a></p>
 <pre><code class="language-python">import time

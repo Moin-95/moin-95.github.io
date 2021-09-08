@@ -98,6 +98,10 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#find-files">Find files</a>
     </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#extract-files">Extract files</a>
+        <ul>
     <li class="toctree-l3"><a class="reference internal" href="#list-open-files">List open files</a>
     </li>
         </ul>
@@ -190,7 +194,12 @@ sudo apt-get update &amp;&amp; sudo apt-get upgrade
 </code></pre>
 <p>Note that <code>-x</code> will exclude <code>/dev</code>, <code>/proc</code>, <code>/run</code>, <code>sys</code> since these are pseudo-filesystems which exist in memory only.</p>
 <h3 id="find-files">Find files</h3>
-<pre><code class="language-sh">find ~/Downloads -maxdepth 1 -type f -name &quot;*.mp3&quot;
+<pre><code class="language-sh">find /usr -type d -name &quot;icons&quot;
+ls ~/Downloads | grep .mp3
+find ~/ -maxdepth 2 -type f -name &quot;*.mp3&quot;
+</code></pre>
+<h2 id="extract-files">Extract files</h2>
+<pre><code class="language-sh">tar -xvf 02-Flat-Remix-Blue-Dark_20210620.tar.xz -C /usr/share/icons/
 </code></pre>
 <h3 id="list-open-files">List open files</h3>
 <pre><code class="language-sh">sudo lsof -a -u r2 -c spotify -p ^9365 -d 0-$(ulimit -S -n) +D /usr | grep -E &quot;REG|DIR&quot; | less
