@@ -74,16 +74,16 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#install-dependencies-from-a-requirementstxt-file">Install dependencies from a requirements.txt file</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#consult-object-help">Consult object help</a>
+    <li class="toctree-l2"><a class="reference internal" href="#containerized-python-development">Containerized Python development</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#docs">Docs</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#package-registry">Package registry</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#containerized-python-development">Containerized Python development</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#snippets">Snippets</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#consult-object-help">Consult object help</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#parse-arguments">Parse arguments</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#performance-counter">Performance counter</a>
@@ -227,9 +227,11 @@ pip freeze &gt; requirements.txt # freeze requirements
 <h2 id="install-dependencies-from-a-requirementstxt-file">Install dependencies from a requirements.txt file</h2>
 <pre><code class="language-sh">pip install -r requirements.txt
 </code></pre>
-<h2 id="consult-object-help">Consult object help</h2>
-<pre><code class="language-python">help(set)
-</code></pre>
+<h2 id="containerized-python-development">Containerized Python development</h2>
+<ul>
+<li><a href="https://github.com/ar2pi/run-python-script">run-python-script</a></li>
+<li><a href="https://www.docker.com/blog/tag/python-env-series/">Read the Docker blog post series</a></li>
+</ul>
 <h2 id="docs">Docs</h2>
 <ul>
 <li><a href="https://docs.python.org/3/reference/index.html">The Python Language Reference</a></li>
@@ -239,12 +241,11 @@ pip freeze &gt; requirements.txt # freeze requirements
 <ul>
 <li><a href="https://pypi.org/">PyPi</a></li>
 </ul>
-<h2 id="containerized-python-development">Containerized Python development</h2>
-<ul>
-<li><a href="https://www.docker.com/blog/tag/python-env-series/">Read the Docker blog post series</a></li>
-</ul>
 <h2 id="snippets">Snippets</h2>
 <p><strong><code>#!/usr/bin/env python</code></strong></p>
+<h3 id="consult-object-help">Consult object help</h3>
+<pre><code class="language-python">help(set)
+</code></pre>
 <h3 id="parse-arguments">Parse arguments</h3>
 <pre><code class="language-python">import argparse
 
