@@ -66,6 +66,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#snippets">Snippets</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get-public-key-fingerprint">Get public key fingerprint</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#log-function">Log function</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#autoload-nvmrc">Autoload .nvmrc</a>
@@ -158,6 +160,11 @@
 <p>Gist: <a href="https://gist.github.com/ar2pi/41d1d0645d6437d7b69b6e7c64e88d8e">https://gist.github.com/ar2pi/41d1d0645d6437d7b69b6e7c64e88d8e</a></p>
 <h2 id="snippets">Snippets</h2>
 <p><strong><code>#!/usr/bin/env {zsh,bash}</code></strong></p>
+<h3 id="get-public-key-fingerprint">Get public key fingerprint</h3>
+<pre><code class="language-bash">ssh-keygen -l -E sha256 -f ~/.ssh/id_ed25519
+# or
+ssh-keygen -l -E md5 -f ~/.ssh/id_rsa
+</code></pre>
 <h3 id="log-function">Log function</h3>
 <pre><code class="language-bash">#!/usr/bin/env bash
 
