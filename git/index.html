@@ -74,6 +74,18 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#use-a-different-user-for-a-specific-git-project">Use a different user for a specific git project</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use-a-gpg-key-to-sign-git-commits">Use a gpg key to sign git commits</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#generate-a-gpg-key-using-yubikey">Generate a gpg key using YubiKey</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#instruct-git-to-use-gpg-key">Instruct git to use gpg key</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-touch-flags">Set touch flags</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-up-another-workstation">Set up another workstation</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -158,6 +170,49 @@ git config --global user.email &quot;your_email@example.com&quot;
 <p>To use a different user than the one configured globally for authoring commits, run the following in the project folder:</p>
 <pre><code class="language-sh">git config --local user.name &quot;YOUR_NAME&quot;
 git config --local user.email &quot;your_email@example.com&quot;
+</code></pre>
+<h2 id="use-a-gpg-key-to-sign-git-commits">Use a gpg key to sign git commits</h2>
+<h3 id="generate-a-gpg-key-using-yubikey">Generate a gpg key using YubiKey</h3>
+<p>Generate Signature, Encryption and Authentication keys, with your YubiKey plugged in:</p>
+<pre><code class="language-sh"># force the use of RSA 4096 keys
+gpg --edit-card
+gpg/card&gt; admin
+gpg/card&gt; key-attr
+# follow prompts and repeat for Signature, Encryption and Authentication keys
+
+# generate keys
+gpg --edit-card
+gpg/card&gt; admin
+gpg/card&gt; generate
+# follow prompts and repeat for Signature, Encryption and Authentication keys
+</code></pre>
+<p>Tested with <a href="https://www.yubico.com/co/product/yubikey-5c-nfc/">YubiKey 5C NFC</a></p>
+<h3 id="instruct-git-to-use-gpg-key">Instruct git to use gpg key</h3>
+<pre><code class="language-sh"># list keys, key id is what comes after rsa4096/
+gpg --list-secret-keys --keyid-format=long
+
+# configure git to sign commits with your gpg key
+git config --global user.signingKey [KEY_ID]
+git config --global commit.gpgsign true
+git config --global gpg.program gpg
+
+# export key to add to your GitHub profile or whatever
+gpg --armor --export [YOUR_EMAIL]
+</code></pre>
+<h3 id="set-touch-flags">Set touch flags</h3>
+<pre><code class="language-sh">sudo apt install yubikey-manager
+# see possible options
+ykman openpgp keys set-touch -h
+# turn flags on
+ykman openpgp keys set-touch sig cached
+ykman openpgp keys set-touch enc cached
+ykman openpgp keys set-touch aut cached
+</code></pre>
+<h3 id="set-up-another-workstation">Set up another workstation</h3>
+<pre><code class="language-sh"># export the GPG key from source workstation
+gpg --output public.pgp --armor --export [KEY_ID]
+# import the GPG key in target workstation
+gpg --import public.pgp
 </code></pre>
               
             </div>

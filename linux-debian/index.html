@@ -90,7 +90,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#modify-path-env-variable">Modify PATH env variable</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#upgrade-packages">Upgrade packages</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#add-an-additional-ppa-for-newer-or-extra-packages">Add an additional PPA for newer or extra packages</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-and-hold-on-specific-package-version">Install and hold on specific package version</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a>
         <ul>
@@ -176,6 +180,9 @@ sudo chmod 440 /etc/sudoers.d/username
 <h2 id="modify-path-env-variable">Modify PATH env variable</h2>
 <pre><code class="language-sh">PATH=$PATH:/path/to/bin
 </code></pre>
+<h2 id="upgrade-packages">Upgrade packages</h2>
+<pre><code class="language-sh">sudo apt update &amp;&amp; sudo apt upgrade &amp;&amp; sudo apt autoremove
+</code></pre>
 <h2 id="add-an-additional-ppa-for-newer-or-extra-packages">Add an additional PPA for newer or extra packages</h2>
 <pre><code class="language-sh"># https://launchpad.net/~git-core/+archive/ubuntu/ppa
 echo '''
@@ -186,6 +193,10 @@ deb http://ppa.launchpad.net/git-core/ppa/ubuntu/ xenial main
 curl https://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0xe1dd270288b4e6030699e45fa1715d88e1df1f24 | sudo apt-key add
 
 sudo apt-get update &amp;&amp; sudo apt-get upgrade
+</code></pre>
+<h2 id="install-and-hold-on-specific-package-version">Install and hold on specific package version</h2>
+<pre><code class="language-sh">apt-get install -y kubeadm=1.21.1-00 kubelet=1.21.1-00 kubectl=1.21.1-00
+apt-mark hold kubelet kubeadm kubectl
 </code></pre>
 <h2 id="filesystem">Filesystem</h2>
 <p><a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf">Filesystem Hierarchy Standard</a></p>

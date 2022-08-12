@@ -82,6 +82,12 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-kubernetes">Install Kubernetes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#on-linux-debian_1">On Linux (Debian)</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#snippets">Snippets</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#output-resource-yaml">Output resource yaml</a>
@@ -152,6 +158,51 @@ arch=amd64
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v$version/bin/$os_kernel/$arch/kubectl
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
+
+echo '''
+# kubectl auto completion
+source &lt;(kubectl completion zsh)
+''' &gt;&gt; ~/.zshrc
+</code></pre>
+<h2 id="install-kubernetes">Install Kubernetes</h2>
+<h4 id="on-linux-debian_1">On Linux (Debian)</h4>
+<p>kubeadm-config.yaml</p>
+<pre><code class="language-yaml">apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+kubernetesVersion: 1.21.1
+controlPlaneEndpoint: &quot;k8scp:6443&quot;
+networking:
+  podSubnet: 192.168.0.0/16 # corresponds to calico.yaml CALICO_IPV4POOL_CIDR ip
+  # cat calico.yaml | grep -C 10 CALICO_IPV4POOL_CIDR
+</code></pre>
+<pre><code class="language-sh">ip addr show
+# add eth ip to /etc/hosts
+
+apt-get install -y kubeadm=1.21.1-00 kubelet=1.21.1-00 kubectl=1.21.1-00
+apt-mark hold kubelet kubeadm kubectl
+
+firewall-cmd --permanent --zone=public --add-port=6443/tcp --add-port=10250/tcp
+# firewall-cmd --permanent --service=service --remove-port=6443/tcp --remove-port=10250/tcp
+
+su - 
+swapoff -a
+
+sudo kubeadm init --config=kubeadm-config.yaml --upload-certs | tee kubeadm-init.out
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+wget https://docs.projectcalico.org/manifests/calico.yaml
+kubectl apply -f calico.yaml
+
+kubectl describe nodes &lt;Tab&gt; | less
+kubectl get pod --all-namespaces
+sudo kubeadm config print init-defaults
+
+# allow control plane to run non-infrastructure pods
+kubectl describe node | grep -i taint
+kubectl taint nodes --all node-role.kubernetes.io/master-
 </code></pre>
 <h2 id="snippets">Snippets</h2>
 <h3 id="output-resource-yaml">Output resource yaml</h3>
