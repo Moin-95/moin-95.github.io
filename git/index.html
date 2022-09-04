@@ -66,13 +66,15 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Git</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#generate-a-ssh-key">Generate a ssh key</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#use-distinct-ssh-keys-between-hosts">Use distinct ssh keys between hosts</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#set-a-global-user-for-authoring-commits">Set a global user for authoring commits</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#use-a-different-user-for-a-specific-git-project">Use a different user for a specific git project</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#generate-a-ssh-key">Generate a ssh key</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get-public-key-fingerprint">Get public key fingerprint</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use-distinct-ssh-keys-between-hosts">Use distinct ssh keys between hosts</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#use-a-gpg-key-to-sign-git-commits">Use a gpg key to sign git commits</a>
         <ul>
@@ -142,8 +144,22 @@
             <div class="section">
               
                 <h1 id="git">Git</h1>
+<h2 id="set-a-global-user-for-authoring-commits">Set a global user for authoring commits</h2>
+<pre><code class="language-sh">git config --global user.name &quot;YOUR_NAME&quot;
+git config --global user.email &quot;your_email@example.com&quot;
+</code></pre>
+<h2 id="use-a-different-user-for-a-specific-git-project">Use a different user for a specific git project</h2>
+<p>To use a different user than the one configured globally for authoring commits, run the following in the project folder:</p>
+<pre><code class="language-sh">git config --local user.name &quot;YOUR_NAME&quot;
+git config --local user.email &quot;your_email@example.com&quot;
+</code></pre>
 <h2 id="generate-a-ssh-key">Generate a ssh key</h2>
 <p>Follow the instructions in <a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key">GitHub Docs - Generating a new SSH key</a>.</p>
+<h2 id="get-public-key-fingerprint">Get public key fingerprint</h2>
+<pre><code class="language-bash">ssh-keygen -l -E sha256 -f ~/.ssh/id_ed25519
+# or
+ssh-keygen -l -E md5 -f ~/.ssh/id_rsa
+</code></pre>
 <h2 id="use-distinct-ssh-keys-between-hosts">Use distinct ssh keys between hosts</h2>
 <p>Add the following in <code>~/.ssh/config</code>, adapting to your specific setup:</p>
 <pre><code class="language-text">Host github.com
@@ -162,15 +178,6 @@ Host gitlab.com
 <blockquote>
 <p>In case you need to create <code>~/.ssh/config</code> ensure proper file permissions are set with <code>chmod 600 ~/.ssh/config</code></p>
 </blockquote>
-<h2 id="set-a-global-user-for-authoring-commits">Set a global user for authoring commits</h2>
-<pre><code class="language-sh">git config --global user.name &quot;YOUR_NAME&quot;
-git config --global user.email &quot;your_email@example.com&quot;
-</code></pre>
-<h2 id="use-a-different-user-for-a-specific-git-project">Use a different user for a specific git project</h2>
-<p>To use a different user than the one configured globally for authoring commits, run the following in the project folder:</p>
-<pre><code class="language-sh">git config --local user.name &quot;YOUR_NAME&quot;
-git config --local user.email &quot;your_email@example.com&quot;
-</code></pre>
 <h2 id="use-a-gpg-key-to-sign-git-commits">Use a gpg key to sign git commits</h2>
 <h3 id="generate-a-gpg-key-using-yubikey">Generate a gpg key using YubiKey</h3>
 <p>Generate Signature, Encryption and Authentication keys, with your YubiKey plugged in:</p>
