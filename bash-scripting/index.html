@@ -90,8 +90,6 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#log-function">Log function</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#get-public-key-fingerprint">Get public key fingerprint</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#autoload-nvmrc">Autoload .nvmrc</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#adblocksh">Adblock.sh</a>
@@ -173,7 +171,7 @@ CURRENT_SCRIPT_FILE=$(basename ${BASH_SOURCE[0]})
 <p>See <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_02">POSIX spec</a></p>
 <h3 id="hash-tables-associative-arrays-in-linux-shell-scripts">Hash tables (associative arrays) in linux shell scripts</h3>
 <h4 id="bash">bash</h4>
-<h5 id="bash-v3">bash v3</h5>
+<p><strong>bash v3</strong></p>
 <pre><code class="language-bash">function key_val () {
     case $1 in
         &quot;foo&quot;) echo &quot;bar&quot;;;
@@ -186,7 +184,7 @@ for key in &quot;foo&quot; &quot;baz&quot;; do
     echo &quot;$key: $(key_val $key)&quot;
 done
 </code></pre>
-<h5 id="bash-v4">bash v4</h5>
+<p><strong>bash v4</strong></p>
 <pre><code class="language-bash">declare -A arr
 arr=([foo]=bar [baz]=qux)
 
@@ -206,8 +204,8 @@ done
 <pre><code class="language-sh">#!/bin/bash
 
 arr=(
-  &quot;key value&quot;
-  &quot;foo bar&quot;
+    &quot;key value&quot;
+    &quot;foo bar&quot;
 )
 
 for item in &quot;${arr[@]}&quot;; do
@@ -373,11 +371,6 @@ function out () {
 }
 </code></pre>
 <p><a href="https://gist.github.com/ar2pi/b0c229afe9cd5f7d02645c8c62b5e989">Gist</a></p>
-<h3 id="get-public-key-fingerprint">Get public key fingerprint</h3>
-<pre><code class="language-bash">ssh-keygen -l -E sha256 -f ~/.ssh/id_ed25519
-# or
-ssh-keygen -l -E md5 -f ~/.ssh/id_rsa
-</code></pre>
 <h3 id="autoload-nvmrc">Autoload .nvmrc</h3>
 <pre><code class="language-zsh">#!/usr/bin/env zsh
 
