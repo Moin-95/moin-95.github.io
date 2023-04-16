@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="Arthur Picerna">
-  <link rel="canonical" href="https://docs.ar2pi.net/bash-scripting/">
+  <link rel="canonical" href="https://docs.ar2pi.net/shell/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Bash scripting - ar2pi</title>
+  <title>Shell - ar2pi</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Bash scripting";
-    var mkdocs_page_input_path = "bash-scripting.md";
-    var mkdocs_page_url = "/bash-scripting/";
+    var mkdocs_page_name = "Shell";
+    var mkdocs_page_input_path = "shell.md";
+    var mkdocs_page_url = "/shell/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -47,20 +47,18 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">About</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Arthur Picerna (ar2pi)</a>
                     </li>
                 </ul>
-                <ul>
+                <p class="caption"><span class="caption-text">Cheatsheets</span></p>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../go/">Go</a>
                     </li>
-                </ul>
-                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
                     </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Bash scripting</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Shell</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#zshrc">.zshrc</a>
     </li>
@@ -98,25 +96,20 @@
     </li>
     </ul>
                     </li>
-                </ul>
-                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../vim/">Vim</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../git/">Git</a>
                     </li>
-                </ul>
-                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
                     </li>
-                </ul>
-                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../kubernetes/">Kubernetes</a>
                     </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../prometheus-video-renderer/">Prometheus Video Renderer</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../linux-debian/">Linux (Debian)</a>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Lab</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../linux-debian/">Linux (Debian)</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../lab/prometheus-video-renderer/">Prometheus Video Renderer</a>
                     </li>
                 </ul>
       </div>
@@ -139,11 +132,15 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Cheatsheets &raquo;</li>
+        
+      
     
-    <li>Bash scripting</li>
+    <li>Shell</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/bash-scripting.md"
+        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/shell.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -155,14 +152,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="bash-scripting">Bash scripting</h1>
+                <h1 id="shell">Shell</h1>
 <h2 id="zshrc">.zshrc</h2>
 <p>Gist: <a href="https://gist.github.com/ar2pi/41d1d0645d6437d7b69b6e7c64e88d8e">https://gist.github.com/ar2pi/41d1d0645d6437d7b69b6e7c64e88d8e</a></p>
 <h2 id="snippets">Snippets</h2>
 <p><strong><code>#!/usr/bin/env {zsh,bash}</code></strong></p>
 <h3 id="get-current-script-directory-and-filename">Get current script directory and filename</h3>
-<pre><code class="language-bash">CURRENT_SCRIPT_DIR=$(dirname ${BASH_SOURCE[0]}) # Relative path
-CURRENT_SCRIPT_DIR=$(cd $(dirname ${BASH_SOURCE[0]}) &amp;&amp; pwd) # Absolute path
+<pre><code class="language-bash">CURRENT_SCRIPT_DIR=$(dirname ${BASH_SOURCE[0]})               # Relative path
+CURRENT_SCRIPT_DIR=$(cd $(dirname ${BASH_SOURCE[0]}) &amp;&amp; pwd)  # Absolute path
 CURRENT_SCRIPT_FILE=$(basename ${BASH_SOURCE[0]})
 </code></pre>
 <h3 id="default-variable-value">Default variable value</h3>
@@ -427,7 +424,7 @@ sudo sh -c &quot;curl -sSL -o - http://winhelp2002.mvps.org/hosts.txt &gt;&gt; /
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../git/" class="btn btn-neutral float-right" title="Git">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../vim/" class="btn btn-neutral float-right" title="Vim">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../python/" class="btn btn-neutral" title="Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -463,7 +460,7 @@ sudo sh -c &quot;curl -sSL -o - http://winhelp2002.mvps.org/hosts.txt &gt;&gt; /
       <span><a href="../python/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../git/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../vim/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -47,44 +47,38 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">About</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Arthur Picerna (ar2pi)</a>
                     </li>
                 </ul>
-                <ul>
+                <p class="caption"><span class="caption-text">Cheatsheets</span></p>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../go/">Go</a>
                     </li>
-                </ul>
-                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
                     </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../bash-scripting/">Bash scripting</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../shell/">Shell</a>
                     </li>
-                </ul>
-                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../vim/">Vim</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../git/">Git</a>
                     </li>
-                </ul>
-                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
                     </li>
-                </ul>
-                <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#kubectl-snippets">Kubectl snippets</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#output-resource-manifest-yaml">Output resource manifest yaml</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#boilerplates">Boilerplates</a>
+    <li class="toctree-l3"><a class="reference internal" href="#cheat-sheet">Cheat sheet</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#describe-api-resources">Describe API resources</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#list-all-kube-system-resources">List all kube-system resources</a>
+    <li class="toctree-l2"><a class="reference internal" href="#list-cluster-resources">List cluster resources</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#change-default-namespace">Change default namespace</a>
     </li>
@@ -106,13 +100,12 @@
     </li>
     </ul>
                     </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../prometheus-video-renderer/">Prometheus Video Renderer</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../linux-debian/">Linux (Debian)</a>
                     </li>
                 </ul>
+                <p class="caption"><span class="caption-text">Lab</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../linux-debian/">Linux (Debian)</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../lab/prometheus-video-renderer/">Prometheus Video Renderer</a>
                     </li>
                 </ul>
       </div>
@@ -135,6 +128,10 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Cheatsheets &raquo;</li>
+        
+      
     
     <li>Kubernetes</li>
     <li class="wy-breadcrumbs-aside">
@@ -156,12 +153,38 @@
 <h3 id="output-resource-manifest-yaml">Output resource manifest yaml</h3>
 <pre><code class="language-sh">kubectl [COMMAND] --dry-run=client -o yaml &gt; resource.yaml
 </code></pre>
-<h3 id="boilerplates">Boilerplates</h3>
-<pre><code class="language-sh"># create nginx pod
-kubectl run nginx --image=nginx
+<h3 id="cheat-sheet">Cheat sheet</h3>
+<p><a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">Official docs cheat sheet</a></p>
+<pre><code class="language-sh"># create nginx pod on port 8080, with label tier=db and associated ClusterIP service 
+kubectl run nginx --image=nginx:latest --port 8080 -l tier=db --expose true
+# create nginx deployment, with 3 replicas in dev namespace
+kubectl create deploy webapp --image nginx -r 3 -n dev
+# print imperative create command options to create LoadBalancer
+kubectl create svc loadbalancer -h
 
 # generate deployment yaml file (-o yaml). Don't create it(--dry-run) with 4 replicas (--replicas=4)
 kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o yaml &gt; nginx-deployment.yaml
+
+# scale a replicaset named 'foo' to 3
+kubectl scale --replicas=3 rs/foo
+# update existing resource
+kubectl edit pod/nginx
+# terminate existing resource and recreate it (useful when edit not possible )
+kubectl replace --force -f nginx-deployment.yaml
+
+# stream all pods logs with label name=myLabel (stdout)
+kubectl logs -f -l env=dev --all-containers
+
+# count pods in env dev and app foo
+kubectl get pods -l env=dev,app=foo --no-headers | wc -l
+
+# taint node
+kubectl taint nodes node01 spray=mortein:NoSchedule
+# remove taint from node
+kubectl taint nodes node01 spray=mortein:NoSchedule-
+
+# label node
+kubectl label node/node01 color=blue
 </code></pre>
 <h3 id="describe-api-resources">Describe API resources</h3>
 <pre><code class="language-sh"># list all possible resources
@@ -243,15 +266,21 @@ traefikservices                                traefik.containo.us/v1alpha1     
 kubectl explain svc.spec.ports
 kubectl explain pods.spec.containers --recursive
 </code></pre>
-<h2 id="list-all-kube-system-resources">List all kube-system resources</h2>
-<pre><code class="language-sh">kubectl get all -n kube-system
+<h2 id="list-cluster-resources">List cluster resources</h2>
+<pre><code class="language-sh"># list all resources
+kubectl get all -A
+# list all kube-system resources
+kubectl get all -n kube-system
+
+# watch all resources
+watch kubectl get all -A
 </code></pre>
 <h2 id="change-default-namespace">Change default namespace</h2>
 <pre><code class="language-sh">kubectl config set-context $(kubectl config current-context) --namespace dev
 </code></pre>
 <h2 id="internal-dns">Internal DNS</h2>
-<p>Within same namespace: http://{service_name}
-Between distinct namespaces: http://{service_name}.{namespace}.svc.cluster.local</p>
+<p>Within same namespace: <code>http://{service_name}</code>  </p>
+<p>Between distinct namespaces: <code>http://{service_name}.{namespace}.svc.cluster.local</code></p>
 <h2 id="install-kubectl">Install kubectl</h2>
 <p><a href="https://kubernetes.io/es/docs/tasks/tools/install-kubectl/">https://kubernetes.io/es/docs/tasks/tools/install-kubectl/</a></p>
 <hr />
@@ -322,7 +351,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../prometheus-video-renderer/" class="btn btn-neutral float-right" title="Prometheus Video Renderer">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../linux-debian/" class="btn btn-neutral float-right" title="Linux (Debian)">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../networking/" class="btn btn-neutral" title="Networking"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -358,7 +387,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
       <span><a href="../networking/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../prometheus-video-renderer/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../linux-debian/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
