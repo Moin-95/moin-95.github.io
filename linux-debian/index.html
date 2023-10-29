@@ -1,83 +1,88 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Arthur Picerna" /><link rel="canonical" href="https://docs.ar2pi.net/linux-debian/" />
-      <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Linux (Debian) - ar2pi</title>
-    <link rel="stylesheet" href="../css/theme.css" />
-    <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-    
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Linux (Debian)";
-        var mkdocs_page_input_path = "linux-debian.md";
-        var mkdocs_page_url = "/linux-debian/";
-      </script>
-    
-    <!--[if lt IE 9]>
-      <script src="../js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Arthur Picerna">
+  <link rel="canonical" href="https://docs.ar2pi.net/linux-debian/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Linux (Debian) - ar2pi</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Linux (Debian)";
+    var mkdocs_page_input_path = "linux-debian.md";
+    var mkdocs_page_url = "/linux-debian/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
+
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> ar2pi
-        </a><div role="search">
+        <a href=".." class="icon icon-home"> ar2pi</a>
+        <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">About</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="..">Arthur Picerna (ar2pi)</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Cheatsheets</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../go/">Go</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../shell/">Shell</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../vim/">Vim</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../git/">Git</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../kubernetes/">Kubernetes</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Linux (Debian)</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">About</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Arthur Picerna (ar2pi)</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Cheatsheets</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../go/">Go</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../python/">Python</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../shell/">Shell</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../vim/">Vim</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../git/">Git</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../kubernetes/">Kubernetes</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Linux (Debian)</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#get-current-release-version">Get current release version</a>
+    <li class="toctree-l2"><a class="reference internal" href="#packages">Packages</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrade-packages">Upgrade packages</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#get-ubuntus-base-debian-version">Get Ubuntu's base Debian version</a>
+    <li class="toctree-l3"><a class="reference internal" href="#dpkg">dpkg</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#add-user-to-sudoers">Add user to sudoers</a>
+    <li class="toctree-l3"><a class="reference internal" href="#apt">apt</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#modify-path-env-variable">Modify PATH env variable</a>
+    <li class="toctree-l3"><a class="reference internal" href="#add-an-additional-ppa-for-newer-or-extra-packages">Add an additional PPA for newer or extra packages</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#upgrade-packages">Upgrade packages</a>
+    <li class="toctree-l3"><a class="reference internal" href="#install-and-hold-on-specific-package-version">Install and hold on specific package version</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#add-an-additional-ppa-for-newer-or-extra-packages">Add an additional PPA for newer or extra packages</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#install-and-hold-on-specific-package-version">Install and hold on specific package version</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#increase-max-number-of-watched-files">Increase max number of watched files</a>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#filesystem">Filesystem</a>
         <ul>
@@ -85,11 +90,11 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#find-files">Find files</a>
     </li>
-        </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#extract-files">Extract files</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#extract-files">Extract files</a>
-        <ul>
     <li class="toctree-l3"><a class="reference internal" href="#list-open-files">List open files</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#increase-max-number-of-watched-files">Increase max number of watched files</a>
     </li>
         </ul>
     </li>
@@ -105,62 +110,106 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#signals">Signals</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#dpkg">dpkg</a>
+    <li class="toctree-l2"><a class="reference internal" href="#containerization">Containerization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#namespaces">Namespaces</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#apt">apt</a>
+    <li class="toctree-l3"><a class="reference internal" href="#overlay-filesystems">Overlay filesystems</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cgroups">Cgroups</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#miscellanea">Miscellanea</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get-current-release-version">Get current release version</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get-ubuntus-base-debian-version">Get Ubuntu's base Debian version</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#add-user-to-sudoers">Add user to sudoers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#modify-path-env-variable">Modify PATH env variable</a>
+    </li>
+        </ul>
     </li>
     </ul>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Lab</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../lab/prometheus-video-renderer/">Prometheus Video Renderer</a>
-                  </li>
-              </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Lab</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../lab/prometheus-video-renderer/">Prometheus video renderer</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">ar2pi</a>
-        
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ar2pi</a>
       </nav>
+
+      
       <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
           <li>Cheatsheets &raquo;</li>
-      <li class="breadcrumb-item active">Linux (Debian)</li>
+        
+      
+    
+    <li>Linux (Debian)</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/linux-debian.md" class="icon icon-github"> Edit on GitHub</a>
+      
+        <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/linux-debian.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
+  
   <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
+
+          <div role="main">
+            <div class="section">
               
                 <h1 id="linux-debian">Linux (Debian)</h1>
-<h2 id="get-current-release-version">Get current release version</h2>
-<pre><code class="language-sh">cat /etc/os-release | sed -nE &quot;s/VERSION=\&quot;(.*)\&quot;/\1/p&quot;
-</code></pre>
-<h2 id="get-ubuntus-base-debian-version">Get Ubuntu's base Debian version</h2>
-<pre><code class="language-sh">ubuntu_version=xenial
-curl https://git.launchpad.net/ubuntu/+source/base-files/plain/etc/debian_version?h=ubuntu/$ubuntu_version
-</code></pre>
-<h2 id="add-user-to-sudoers">Add user to sudoers</h2>
-<pre><code class="language-sh">echo 'username ALL=(ALL) ALL' &gt; /etc/sudoers.d/username
-sudo chmod 440 /etc/sudoers.d/username
-</code></pre>
-<h2 id="modify-path-env-variable">Modify PATH env variable</h2>
-<pre><code class="language-sh">PATH=$PATH:/path/to/bin
-</code></pre>
-<h2 id="upgrade-packages">Upgrade packages</h2>
+<h2 id="packages">Packages</h2>
+<h3 id="upgrade-packages">Upgrade packages</h3>
 <pre><code class="language-sh">sudo apt update &amp;&amp; sudo apt upgrade &amp;&amp; sudo apt autoremove
 </code></pre>
-<h2 id="add-an-additional-ppa-for-newer-or-extra-packages">Add an additional PPA for newer or extra packages</h2>
+<h3 id="dpkg">dpkg</h3>
+<pre><code class="language-sh">dpkg -l # list all packages installed
+dpkg --get-selections &quot;*wget*&quot; # list installed packages with 'wget' in their name
+dpkg -L wget # list files installed in the wget package
+dpkg -p wget # show information about an installed package
+dpkg -I webfs_1.21+ds1-8_amd64.deb # show information about a package file
+dpkg -c webfs_1.21+ds1-8_amd64.deb # list files in a package file
+dpkg -S /etc/init/networking.conf # show what package owns /etc/init/networking.conf
+dpkg -s wget # show the status of a package
+dpkg -V package # verify the installed package's integrity
+sudo dpkg -i foobar.deb # installing or upgrading the foobar package
+sudo dpkg -r package # remove all of an installed package except for its configuration files
+sudo dpkg -P package # remove all of an installed package, including its configuration files
+</code></pre>
+<h3 id="apt">apt</h3>
+<pre><code class="language-sh">[apt|apt-get] update
+apt list --upgradable 
+[apt|apt-get] upgrade
+[apt|apt-get] autoremove
+[apt|apt-cache] search metapackage # see all metapackages
+[apt|apt-cache] search -n wget # search for packages called 'wget'
+[apt|apt-cache] show wget # show package info
+[apt|apt-cache] [depends|rdepends] wget # show dependencies / reverse deps respectively
+</code></pre>
+<h3 id="add-an-additional-ppa-for-newer-or-extra-packages">Add an additional PPA for newer or extra packages</h3>
 <pre><code class="language-sh"># https://launchpad.net/~git-core/+archive/ubuntu/ppa
 echo '''
 deb http://ppa.launchpad.net/git-core/ppa/ubuntu/ xenial main
@@ -171,21 +220,14 @@ curl https://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0xe1dd270288b4e60
 
 sudo apt-get update &amp;&amp; sudo apt-get upgrade
 </code></pre>
-<h2 id="install-and-hold-on-specific-package-version">Install and hold on specific package version</h2>
+<h3 id="install-and-hold-on-specific-package-version">Install and hold on specific package version</h3>
 <pre><code class="language-sh">apt-get install -y kubeadm=1.21.1-00 kubelet=1.21.1-00 kubectl=1.21.1-00
 apt-mark hold kubelet kubeadm kubectl
 </code></pre>
-<h2 id="increase-max-number-of-watched-files">Increase max number of watched files</h2>
-<pre><code class="language-sh">cat /proc/sys/fs/inotify/max_user_watches
-
-sudo vi /etc/sysctl.conf
-# add at the end of file:
-#   fs.inotify.max_user_watches=524288
-
-sudo sysctl -p
-</code></pre>
 <h2 id="filesystem">Filesystem</h2>
-<p><a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf">Filesystem Hierarchy Standard</a></p>
+<ul>
+<li><a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf">Filesystem Hierarchy Standard</a></li>
+</ul>
 <h3 id="show-directories-size-and-last-modified-date">Show directories size and last modified date</h3>
 <pre><code class="language-sh">sudo du --max-depth=1 -ax --si --time /
 </code></pre>
@@ -195,7 +237,7 @@ sudo sysctl -p
 ls ~/Downloads | grep .mp3
 find ~/ -maxdepth 2 -type f -name &quot;*.mp3&quot;
 </code></pre>
-<h2 id="extract-files">Extract files</h2>
+<h3 id="extract-files">Extract files</h3>
 <pre><code class="language-sh">tar -xvf 02-Flat-Remix-Blue-Dark_20210620.tar.xz -C /usr/share/icons/
 </code></pre>
 <h3 id="list-open-files">List open files</h3>
@@ -211,71 +253,94 @@ u for read and write access;
 <pre><code>REG for a directory;
 DIR for a regular file;
 </code></pre>
+<h3 id="increase-max-number-of-watched-files">Increase max number of watched files</h3>
+<pre><code class="language-sh">cat /proc/sys/fs/inotify/max_user_watches
+
+sudo vi /etc/sysctl.conf
+# add at the end of file:
+#   fs.inotify.max_user_watches=524288
+
+sudo sysctl -p
+</code></pre>
 <h2 id="processes">Processes</h2>
 <h3 id="list-processes">List processes</h3>
 <pre><code class="language-sh">top
 ps aux
-ps axjf # show process tree
-pgrep -a -u r2 # list all processes by user 'r2'
+ps axjf         # show process tree
+pgrep -a -u r2  # list all processes by user 'r2'
 </code></pre>
 <h3 id="ulimit">ulimit</h3>
 <pre><code class="language-sh">man limits.conf
 cat /etc/security/limits.conf | less
-ulimit -a [-S|-H] # list all Soft / Hard limits
-ulimit [LIMIT] [-S|-H] [NEW_LIMIT] # get / set new limit
+ulimit -a [-S|-H]                       # list all Soft / Hard limits
+ulimit [LIMIT] [-S|-H] [NEW_LIMIT]      # get / set new limit
 </code></pre>
 <h3 id="identify-shared-memory-segments">Identify shared memory segments</h3>
 <pre><code class="language-sh">ipcs
-ipcs -p # outputs creator / last operator PIDs
-ps aux | grep -wE -e &quot;2753&quot; -e &quot;851&quot; # see info on processes
+ipcs -p                                 # outputs creator / last operator PIDs
+ps aux | grep -wE -e &quot;2753&quot; -e &quot;851&quot;    # see info on processes
 </code></pre>
 <h2 id="signals">Signals</h2>
 <pre><code class="language-sh">for i in {1..31}; do; echo &quot;$i: $(kill -l $i)&quot;; done
 kill -9 PID
-kill -9 $(pgrep -u r2) # kill all processes by user r2
+kill -9 $(pgrep -u r2)      # kill all processes by user r2
 killall -9 PROCESS_NAME
 </code></pre>
-<h2 id="dpkg">dpkg</h2>
-<pre><code class="language-sh">dpkg -l # list all packages installed
-dpkg --get-selections &quot;*wget*&quot; # list installed packages with 'wget' in their name
-dpkg -L wget # list files installed in the wget package
-dpkg -p wget # show information about an installed package
-dpkg -I webfs_1.21+ds1-8_amd64.deb # show information about a package file
-dpkg -c webfs_1.21+ds1-8_amd64.deb # list files in a package file
-dpkg -S /etc/init/networking.conf # show what package owns /etc/init/networking.conf
-dpkg -s wget # show the status of a package
-dpkg -V package # verify the installed package's integrity
-sudo dpkg -i foobar.deb # installing or upgrading the foobar package
-sudo dpkg -r package # remove all of an installed package except for its configuration files
-sudo dpkg -P package # remove all of an installed package, including its configuration files
+<h2 id="containerization">Containerization</h2>
+<h3 id="namespaces">Namespaces</h3>
+<ul>
+<li><a href="https://www.man7.org/linux/man-pages/man1/unshare.1.html">namespaces(7) — Linux manual page</a></li>
+</ul>
+<pre><code class="language-sh">lsns
+ls -l /proc/[PID]/ns
+readlink /proc/[PID]/ns/pid
+
+# create new namespace
+unshare -pf --mount-proc bash
 </code></pre>
-<h2 id="apt">apt</h2>
-<pre><code class="language-sh">[apt|apt-get] update
-apt list --upgradable 
-[apt|apt-get] upgrade
-[apt|apt-get] autoremove
-[apt|apt-cache] search metapackage # see all metapackages
-[apt|apt-cache] search -n wget # search for packages called 'wget'
-[apt|apt-cache] show wget # show package info
-[apt|apt-cache] [depends|rdepends] wget # show dependencies / reverse deps respectively
+<h3 id="overlay-filesystems">Overlay filesystems</h3>
+<h3 id="cgroups">Cgroups</h3>
+<h2 id="miscellanea">Miscellanea</h2>
+<h3 id="get-current-release-version">Get current release version</h3>
+<pre><code class="language-sh">cat /etc/os-release | sed -nE &quot;s/VERSION=\&quot;(.*)\&quot;/\1/p&quot;
+</code></pre>
+<h3 id="get-ubuntus-base-debian-version">Get Ubuntu's base Debian version</h3>
+<pre><code class="language-sh">ubuntu_version=xenial
+curl https://git.launchpad.net/ubuntu/+source/base-files/plain/etc/debian_version?h=ubuntu/$ubuntu_version
+</code></pre>
+<h3 id="add-user-to-sudoers">Add user to sudoers</h3>
+<pre><code class="language-sh">echo 'username ALL=(ALL) ALL' &gt; /etc/sudoers.d/username
+sudo chmod 440 /etc/sudoers.d/username
+</code></pre>
+<h3 id="modify-path-env-variable">Modify PATH env variable</h3>
+<pre><code class="language-sh">PATH=$PATH:/path/to/bin
+printenv
 </code></pre>
               
             </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../kubernetes/" class="btn btn-neutral float-left" title="Kubernetes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../lab/prometheus-video-renderer/" class="btn btn-neutral float-right" title="Prometheus Video Renderer">Next <span class="icon icon-circle-arrow-right"></span></a>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../lab/prometheus-video-renderer/" class="btn btn-neutral float-right" title="Prometheus video renderer">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../kubernetes/" class="btn btn-neutral" title="Kubernetes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-          
+      
         </div>
       </div>
 
@@ -283,7 +348,7 @@ apt list --upgradable
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="Versions">
+  <div class="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
         <span>
@@ -298,15 +363,14 @@ apt list --upgradable
     
   </span>
 </div>
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "..";</script>
-    <script src="../js/theme_extra.js"></script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>
