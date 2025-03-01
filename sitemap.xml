@@ -2,162 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.ar2pi.net/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/git/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/go/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/kubernetes/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/linux-debian/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/networking/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/python/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/shell/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/vim/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/ant-colony/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/auto-scaling/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/caching/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/canary-release/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/cdktf/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/choreographed-saga/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/circuit-breaker/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/cloud-compliance/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/ebpf-metrics/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/error-budget-burn-rate-alerts/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/feature-flags/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/feature-preview/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/gitops/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/graph-theory/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/grpc-and-graphql/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/load-testing/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/logging/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/multi-node-k8s-on-raspberry/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/lab/prometheus-video-renderer/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/lab/reverse-proxy/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/service-mesh/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/tcp-ip/</loc>
-         <lastmod>2023-10-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://docs.ar2pi.net/lab/tracing/</loc>
-         <lastmod>2023-10-29</lastmod>
+         <loc>https://docs.ar2pi.net/lab/wordpress-2025/</loc>
+         <lastmod>2025-03-01</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

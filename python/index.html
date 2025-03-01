@@ -213,7 +213,7 @@ pyenv version-name # see current virtualenv
 pyenv uninstall python3 # remove virtualenv / python version
 </code></pre>
 <h2 id="generate-a-python-version-file">Generate a <code>.python-version</code> file</h2>
-<pre><code class="language-sh">pyenv version-name &gt; .python-version 
+<pre><code class="language-sh">echo $(pyenv version-name) &gt; .python-version
 </code></pre>
 <p><code>.python-version</code> is then used by <code>pyenv-virtualenv</code> to automatically switch to correct virtualenv.</p>
 <h2 id="generate-a-requirementstxt-file">Generate a <code>requirements.txt</code> file</h2>
