@@ -3,71 +3,57 @@
     <url>
          <loc>https://docs.ar2pi.net/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/git/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/go/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/kubernetes/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/linux-debian/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/networking/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/poems/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/python/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/shell/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/vim/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/labs/ebpf/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/labs/local-k8s/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/labs/prometheus-video-renderer/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ar2pi.net/labs/wordpress-2025/</loc>
          <lastmod>2025-06-07</lastmod>
-         <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -8,7 +8,7 @@
     <title>Python - ar2pi</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
@@ -17,13 +17,12 @@
         var mkdocs_page_url = "/python/";
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,7 +34,7 @@
           <a href=".." class="icon icon-home"> ar2pi
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -50,23 +49,23 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../go/">Go</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Python</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Python</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#local-setup">Local setup</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#on-mac">On Mac</a>
+    <li class="toctree-l3"><a class="reference internal" href="#use-a-specific-python-3-version">Use a specific Python 3 version</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#on-linux-debian">On Linux (Debian)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#configure-poetry-for-dependency-management">Configure Poetry for dependency management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generate-a-python-version-file">Generate a .python-version file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generate-a-requirementstxt-file">Generate a requirements.txt file</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#install-dependencies-from-a-requirementstxt-file">Install dependencies from a requirements.txt file</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#configure-a-python-3-virtualenv">Configure a Python 3 virtualenv</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#generate-a-python-version-file">Generate a .python-version file</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#generate-a-requirementstxt-file">Generate a requirements.txt file</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#install-dependencies-from-a-requirementstxt-file">Install dependencies from a requirements.txt file</a>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#containerized-python-development">Containerized Python development</a>
     </li>
@@ -137,9 +136,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Cheatsheets &raquo;</li>
-      <li>Python</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Cheatsheets</li>
+      <li class="breadcrumb-item active">Python</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/python.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -151,60 +150,48 @@
               
                 <h1 id="python">Python</h1>
 <h2 id="local-setup">Local setup</h2>
-<p>Install <a href="https://github.com/pyenv/pyenv">pyenv</a> and <a href="https://github.com/pyenv/pyenv-virtualenv">pyenv-virtualenv</a>. Respectively for Python version management and virtualenvs management. </p>
-<blockquote>
-<p><code>pyenv-virtualenv</code> uses <code>python -m venv</code> (Python 3.3+) if it is available and the <code>virtualenv</code> command if not</p>
-</blockquote>
-<hr />
-<h4 id="on-mac">On Mac</h4>
-<pre><code class="language-sh">brew install pyenv-virtualenv
-</code></pre>
-<h4 id="on-linux-debian">On Linux (Debian)</h4>
-<pre><code class="language-sh">sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
-  libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-  libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+<p>Install <a href="https://github.com/pyenv/pyenv">pyenv</a> to switch between Python versions.<br />
+Use <code>python3 -m venv .venv</code> to create a local virtual environment.<br />
+In zsh, install <a href="https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv">zsh-autoswitch-virtualenv</a> to autoswitch between local venvs.<br />
+To manage local project dependencies use <a href="https://python-poetry.org">poetry</a>.</p>
+<h3 id="use-a-specific-python-3-version">Use a specific <a href="https://www.python.org/downloads/">Python 3</a> version</h3>
+<pre><code class="language-sh">pyenv install 3.13        # install latest minor python version
+pyenv local 3.13          # use newly installed python version
 
-curl https://pyenv.run | bash
-</code></pre>
-<hr />
-<pre><code class="language-sh">echo '''
-# pyenv-virtualenv
-# see https://github.com/pyenv/pyenv-virtualenv
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PATH:$PYENV_ROOT/bin
-eval &quot;$(pyenv init --path)&quot;
-eval &quot;$(pyenv init -)&quot;
-eval &quot;$(pyenv virtualenv-init -)&quot;
-''' &gt;&gt; ~/.zshrc
-
-source ~/.zshrc
-</code></pre>
-<h2 id="configure-a-python-3-virtualenv">Configure a <a href="https://www.python.org/downloads/">Python 3</a> virtualenv</h2>
-<pre><code class="language-sh">pyenv install --list | grep 3.13 | less # list possible python versions
-
-pyenv install 3.13              # install latest minor python version
-pyenv virtualenv 3.13 python3   # create a new virtualenv
-pyenv activate python3          # activate virtualenv
+python3 -m venv .venv     # create a virtualenv
+# or mkvenv w/ zsh-autoswitch-virtualenv
 </code></pre>
 <p>Other useful <code>pyenv</code> commands:</p>
-<pre><code class="language-sh">pyenv deactivate    # deactivate current virtualenv
-
-pyenv versions      # list installed python versions and available virtualenvs
+<pre><code class="language-sh">pyenv versions      # list installed python versions
+pyenv version-name  # see current python version
 pyenv which python  # see path to python executable
-pyenv version-name  # see current virtualenv
 
-pyenv uninstall python3 # remove virtualenv / python version
+pyenv uninstall 3.13.4  # remove python version, needs to be specific
 </code></pre>
-<h2 id="generate-a-python-version-file">Generate a <code>.python-version</code> file</h2>
+<h3 id="configure-poetry-for-dependency-management">Configure <a href="https://python-poetry.org">Poetry</a> for dependency management</h3>
+<pre><code class="language-sh">poetry config virtualenvs.create true --local
+poetry init
+</code></pre>
+<p>To use poetry only for dependency management in <code>pyproject.toml</code> add:</p>
+<pre><code class="language-toml">[tool.poetry]
+package-mode = false
+</code></pre>
+<p>To add some deps:</p>
+<pre><code class="language-sh">poetry add mkdocs
+poetry add -D black isort   # dev deps
+</code></pre>
+<h3 id="generate-a-python-version-file">Generate a <code>.python-version</code> file</h3>
+<p>Shouldn't be needed after running <code>pyenv local ...</code> but in any other case:</p>
 <pre><code class="language-sh">echo $(pyenv version-name) &gt; .python-version
 </code></pre>
-<p><code>.python-version</code> is then used by <code>pyenv-virtualenv</code> to automatically switch to correct virtualenv.</p>
-<h2 id="generate-a-requirementstxt-file">Generate a <code>requirements.txt</code> file</h2>
-<pre><code class="language-sh">pyenv virtualenv 3.9.6 [VENV_NAME] # create a new virtualenv
-pip install [DEPENDENCY_1] [...] # install dependencies
-pip freeze &gt; requirements.txt # freeze requirements
+<p><code>.python-version</code> is then used by <code>pyenv</code> to automatically switch to correct python version when navigating into the project's folder.</p>
+<h3 id="generate-a-requirementstxt-file">Generate a <code>requirements.txt</code> file</h3>
+<p>Shouldn't be needed when using poetry but in any other case:</p>
+<pre><code class="language-sh">pyenv shell 3.13                    # use specific python version
+pip install [DEPENDENCY_1] [...]    # install dependencies
+pip freeze &gt; requirements.txt       # freeze requirements
 </code></pre>
-<h2 id="install-dependencies-from-a-requirementstxt-file">Install dependencies from a requirements.txt file</h2>
+<h4 id="install-dependencies-from-a-requirementstxt-file">Install dependencies from a requirements.txt file</h4>
 <pre><code class="language-sh">pip install -r requirements.txt
 </code></pre>
 <h2 id="containerized-python-development">Containerized Python development</h2>
@@ -342,14 +329,15 @@ b = {**a, **b} # b = {'foo': 'quux', 'baz': 'qux', 'quuz': 'courge'}
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
