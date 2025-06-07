@@ -8,7 +8,7 @@
     <title>Git - ar2pi</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
@@ -17,12 +17,13 @@
         var mkdocs_page_url = "/git/";
       </script>
     
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +35,7 @@
           <a href=".." class="icon icon-home"> ar2pi
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -55,7 +56,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../vim/">Vim</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Git</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Git</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#set-a-global-user-for-authoring-commits">Set a global user for authoring commits</a>
     </li>
@@ -66,6 +67,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#get-public-key-fingerprint">Get public key fingerprint</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#use-distinct-ssh-keys-between-hosts">Use distinct ssh keys between hosts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#use-an-ssh-key-to-sign-git-commits">Use an ssh key to sign git commits</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#use-a-gpg-key-to-sign-git-commits">Use a gpg key to sign git commits</a>
         <ul>
@@ -88,10 +91,14 @@
                   <li class="toctree-l1"><a class="reference internal" href="../linux-debian/">Linux (Debian)</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Lab</span></p>
+              <p class="caption"><span class="caption-text">Labs</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../lab/prometheus-video-renderer/">Prometheus video renderer</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../labs/prometheus-video-renderer/">Prometheus video renderer</a>
                   </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../poems/">Poems</a>
+                </li>
               </ul>
       </div>
     </div>
@@ -106,9 +113,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Cheatsheets</li>
-      <li class="breadcrumb-item active">Git</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Cheatsheets &raquo;</li>
+      <li>Git</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/git.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -153,6 +160,17 @@ Host gitlab.com
 <blockquote>
 <p>In case you need to create <code>~/.ssh/config</code> ensure proper file permissions are set with <code>chmod 600 ~/.ssh/config</code></p>
 </blockquote>
+<h2 id="use-an-ssh-key-to-sign-git-commits">Use an ssh key to sign git commits</h2>
+<p>See the step by step instructions in this <a href="https://dev.to/ccoveille/git-the-complete-guide-to-sign-your-commits-with-an-ssh-key-35bg">blog post</a>.
+I.e.:</p>
+<pre><code class="language-sh">git config --global gpg.format ssh
+git config --global user.signingkey ~/.ssh/id_ed25519.pub
+echo &quot;$(git config --get user.email) namespaces=\&quot;git\&quot; $(cat ~/.ssh/id_ed25519.pub)&quot; &gt;&gt; ~/.ssh/allowed_signers
+git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
+git config --global commit.gpgsign true
+git config --global tag.gpgsign true
+git config --global format.signoff true
+</code></pre>
 <h2 id="use-a-gpg-key-to-sign-git-commits">Use a gpg key to sign git commits</h2>
 <h3 id="generate-a-gpg-key-using-yubikey">Generate a gpg key using YubiKey</h3>
 <p>Generate Signature, Encryption and Authentication keys, with your YubiKey plugged in:</p>
@@ -235,15 +253,14 @@ gpg --import public.pgp
     
   </span>
 </div>
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "..";</script>
-    <script src="../js/theme_extra.js"></script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>

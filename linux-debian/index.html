@@ -8,7 +8,7 @@
     <title>Linux (Debian) - ar2pi</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
@@ -17,12 +17,13 @@
         var mkdocs_page_url = "/linux-debian/";
       </script>
     
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +35,7 @@
           <a href=".." class="icon icon-home"> ar2pi
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -61,11 +62,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../kubernetes/">Kubernetes</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Linux (Debian)</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Linux (Debian)</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#packages">Packages</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#upgrade-packages">Upgrade packages</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrade-debian-release">Upgrade Debian release</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#dpkg">dpkg</a>
     </li>
@@ -93,7 +96,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#processes">Processes</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#list-processes">List processes</a>
+    <li class="toctree-l3"><a class="reference internal" href="#inspect-running-services">Inspect running services</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#control-processes">Control processes</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#ulimit">ulimit</a>
     </li>
@@ -119,6 +124,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#get-ubuntus-base-debian-version">Get Ubuntu's base Debian version</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#install-a-keyring-file">Install a keyring file</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#add-user-to-sudoers">Add user to sudoers</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#modify-path-env-variable">Modify PATH env variable</a>
@@ -128,10 +135,14 @@
     </ul>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Lab</span></p>
+              <p class="caption"><span class="caption-text">Labs</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../lab/prometheus-video-renderer/">Prometheus video renderer</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../labs/prometheus-video-renderer/">Prometheus video renderer</a>
                   </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../poems/">Poems</a>
+                </li>
               </ul>
       </div>
     </div>
@@ -146,9 +157,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Cheatsheets</li>
-      <li class="breadcrumb-item active">Linux (Debian)</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Cheatsheets &raquo;</li>
+      <li>Linux (Debian)</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/linux-debian.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -163,29 +174,49 @@
 <h3 id="upgrade-packages">Upgrade packages</h3>
 <pre><code class="language-sh">sudo apt update &amp;&amp; sudo apt upgrade &amp;&amp; sudo apt autoremove
 </code></pre>
+<h3 id="upgrade-debian-release">Upgrade Debian release</h3>
+<p><a href="https://wiki.debian.org/DebianUpgrade">Official guide</a></p>
+<pre><code class="language-sh">old_debian_version=bullseye
+new_debian_version=bookworm
+
+cat /etc/apt/sources.list /etc/apt/sources.list.d/* | grep $old_debian_version
+
+sed -i &quot;s/$old_debian_version/$new_debian_version/g&quot; /etc/apt/sources.list
+find /etc/apt/sources.list.d/ -type f | xargs sudo sed -i &quot;s/$old_debian_version/$new_debian_version/g&quot;
+
+cat /etc/apt/sources.list /etc/apt/sources.list.d/* | grep $new_debian_version
+
+sudo apt-get clean
+sudo apt-get update
+sudo apt-get upgrade        # and go grab a coffee
+sudo apt-get full-upgrade   # and go grab a second coffee
+
+sudo apt-get autoremove
+sudo shutdown -r now
+</code></pre>
 <h3 id="dpkg">dpkg</h3>
-<pre><code class="language-sh">dpkg -l # list all packages installed
-dpkg --get-selections &quot;*wget*&quot; # list installed packages with 'wget' in their name
-dpkg -L wget # list files installed in the wget package
-dpkg -p wget # show information about an installed package
-dpkg -I webfs_1.21+ds1-8_amd64.deb # show information about a package file
-dpkg -c webfs_1.21+ds1-8_amd64.deb # list files in a package file
-dpkg -S /etc/init/networking.conf # show what package owns /etc/init/networking.conf
-dpkg -s wget # show the status of a package
-dpkg -V package # verify the installed package's integrity
-sudo dpkg -i foobar.deb # installing or upgrading the foobar package
-sudo dpkg -r package # remove all of an installed package except for its configuration files
-sudo dpkg -P package # remove all of an installed package, including its configuration files
+<pre><code class="language-sh">dpkg -l                               # list all packages installed
+dpkg --get-selections &quot;*wget*&quot;        # list installed packages with 'wget' in their name
+dpkg -L wget                          # list files installed in the wget package
+dpkg -p wget                          # show information about an installed package
+dpkg -I webfs_1.21+ds1-8_amd64.deb    # show information about a package file
+dpkg -c webfs_1.21+ds1-8_amd64.deb    # list files in a package file
+dpkg -S /etc/init/networking.conf     # show what package owns /etc/init/networking.conf
+dpkg -s wget                          # show the status of a package
+dpkg -V package                       # verify the installed package's integrity
+sudo dpkg -i foobar.deb               # installing or upgrading the foobar package
+sudo dpkg -r package                  # remove all of an installed package except for its configuration files
+sudo dpkg -P package                  # remove all of an installed package, including its configuration files
 </code></pre>
 <h3 id="apt">apt</h3>
 <pre><code class="language-sh">[apt|apt-get] update
 apt list --upgradable 
 [apt|apt-get] upgrade
 [apt|apt-get] autoremove
-[apt|apt-cache] search metapackage # see all metapackages
-[apt|apt-cache] search -n wget # search for packages called 'wget'
-[apt|apt-cache] show wget # show package info
-[apt|apt-cache] [depends|rdepends] wget # show dependencies / reverse deps respectively
+[apt|apt-cache] search metapackage    # see all metapackages
+[apt|apt-cache] search -n wget        # search for packages called 'wget'
+[apt|apt-cache] show wget             # show package info
+[apt|apt-cache] [depends|rdepends] wget   # show dependencies / reverse deps respectively
 </code></pre>
 <h3 id="add-an-additional-ppa-for-newer-or-extra-packages">Add an additional PPA for newer or extra packages</h3>
 <pre><code class="language-sh"># https://launchpad.net/~git-core/+archive/ubuntu/ppa
@@ -241,11 +272,20 @@ sudo vi /etc/sysctl.conf
 sudo sysctl -p
 </code></pre>
 <h2 id="processes">Processes</h2>
-<h3 id="list-processes">List processes</h3>
+<h3 id="inspect-running-services">Inspect running services</h3>
+<pre><code class="language-sh">systemctl list-units -t service --state running
+# check particular service 
+sudo systemctl status docker.service
+# go through logs, pg up / down ;)
+sudo journalctl -u docker.service | less
+</code></pre>
+<h3 id="control-processes">Control processes</h3>
 <pre><code class="language-sh">top
 ps aux
-ps axjf         # show process tree
-pgrep -a -u r2  # list all processes by user 'r2'
+ps axjf           # show process tree
+ps -eo pid,comm   # list all processes in 'pid comm' format
+pgrep -a -u r2    # list all processes by user 'r2'
+pgrep keybase | xargs sudo kill -9    # kill all processes matching 'keybase'
 </code></pre>
 <h3 id="ulimit">ulimit</h3>
 <pre><code class="language-sh">man limits.conf
@@ -286,6 +326,18 @@ unshare -pf --mount-proc bash
 <pre><code class="language-sh">ubuntu_version=xenial
 curl https://git.launchpad.net/ubuntu/+source/base-files/plain/etc/debian_version?h=ubuntu/$ubuntu_version
 </code></pre>
+<h3 id="install-a-keyring-file">Install a keyring file</h3>
+<pre><code class="language-sh"># with gpg
+sudo gpg --homedir /tmp --no-default-keyring --keyring /etc/apt/keyrings/debian.gpg --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9 6ED0E7B82643E131 F8D2585B8783D481
+sudo gpg --homedir /tmp --no-default-keyring --keyring /etc/apt/keyrings/debian-security.gpg --keyserver keyserver.ubuntu.com --recv-keys 54404762BBB6E853 BDE6D2B9216EC7A8
+
+# or get public signing key (.asc / .key / .pub file) from some trusted source
+# and unpack it into either /etc/apt/keyrings or /usr/share/keyrings
+curl -sSL https://someurl.com/path/to/KEYNAME.[asc|key] | sudo gpg --dearmor -o /usr/share/keyrings/KEYNAME.gpg
+
+# then in a /etc/apt/sources.list.d file:
+# deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.33/deb/ stable main
+</code></pre>
 <h3 id="add-user-to-sudoers">Add user to sudoers</h3>
 <pre><code class="language-sh">echo 'username ALL=(ALL) ALL' &gt; /etc/sudoers.d/username
 sudo chmod 440 /etc/sudoers.d/username
@@ -299,7 +351,7 @@ printenv
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../kubernetes/" class="btn btn-neutral float-left" title="Kubernetes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../lab/prometheus-video-renderer/" class="btn btn-neutral float-right" title="Prometheus video renderer">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../labs/prometheus-video-renderer/" class="btn btn-neutral float-right" title="Prometheus video renderer">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -329,19 +381,18 @@ printenv
       <span><a href="../kubernetes/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../lab/prometheus-video-renderer/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../labs/prometheus-video-renderer/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "..";</script>
-    <script src="../js/theme_extra.js"></script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>

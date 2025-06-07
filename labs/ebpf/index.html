@@ -3,16 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Arthur Picerna" />
-      <link rel="shortcut icon" href="./img/favicon.ico" />
-    <title>ar2pi</title>
-    <link rel="stylesheet" href="./css/theme.css" />
-    <link rel="stylesheet" href="./css/theme_extra.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Arthur Picerna" /><link rel="canonical" href="https://docs.ar2pi.net/labs/ebpf/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Ebpf - ar2pi</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
-    <script src="./js/jquery-3.6.0.min.js" defer></script>
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Ebpf";
+        var mkdocs_page_input_path = "labs/ebpf.md";
+        var mkdocs_page_url = "/labs/ebpf/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
-      <script src="./js/html5shiv.min.js"></script>
+      <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
@@ -25,9 +32,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="./." class="icon icon-home"> ar2pi
+          <a href="../.." class="icon icon-home"> ar2pi
         </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -36,35 +43,35 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">About</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="./.">Arthur Picerna (ar2pi)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Arthur Picerna (ar2pi)</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Cheatsheets</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="./go/">Go</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../go/">Go</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="./python/">Python</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../python/">Python</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="./shell/">Shell</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../shell/">Shell</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="./vim/">Vim</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../vim/">Vim</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="./git/">Git</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../git/">Git</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="./networking/">Networking</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../networking/">Networking</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="./kubernetes/">Kubernetes</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../kubernetes/">Kubernetes</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="./linux-debian/">Linux (Debian)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux-debian/">Linux (Debian)</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Labs</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="./labs/prometheus-video-renderer/">Prometheus video renderer</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../prometheus-video-renderer/">Prometheus video renderer</a>
                   </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="./poems/">Poems</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../poems/">Poems</a>
                 </li>
               </ul>
       </div>
@@ -74,14 +81,16 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="./.">ar2pi</a>
+          <a href="../..">ar2pi</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="./." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Ebpf</li>
     <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/labs/ebpf.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -89,19 +98,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-
-  <h1 id="search">Search Results</h1>
-
-  <form id="content_search" action="search.html">
-    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-    <input name="q" id="mkdocs-search-query" type="text" class="search_input search-query ui-autocomplete-input" placeholder="Search the Docs" autocomplete="off" autofocus title="Type search term here">
-  </form>
-
-  <div id="mkdocs-search-results" class="search-results" data-no-results-text="No results found">
-    Searching...
-  </div>
-
-
+                
+              
             </div>
           </div><footer>
 
@@ -132,10 +130,10 @@
     
   </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="./js/theme_extra.js" defer></script>
-    <script src="./js/theme.js" defer></script>
-      <script src="./search/main.js" defer></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);

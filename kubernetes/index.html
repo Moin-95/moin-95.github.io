@@ -8,7 +8,7 @@
     <title>Kubernetes - ar2pi</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
@@ -17,12 +17,13 @@
         var mkdocs_page_url = "/kubernetes/";
       </script>
     
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +35,7 @@
           <a href=".." class="icon icon-home"> ar2pi
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -59,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../networking/">Networking</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Kubernetes</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#kubectl-snippets">Kubectl snippets</a>
         <ul>
@@ -96,10 +97,14 @@
                   <li class="toctree-l1"><a class="reference internal" href="../linux-debian/">Linux (Debian)</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">Lab</span></p>
+              <p class="caption"><span class="caption-text">Labs</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../lab/prometheus-video-renderer/">Prometheus video renderer</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../labs/prometheus-video-renderer/">Prometheus video renderer</a>
                   </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../poems/">Poems</a>
+                </li>
               </ul>
       </div>
     </div>
@@ -114,9 +119,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Cheatsheets</li>
-      <li class="breadcrumb-item active">Kubernetes</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Cheatsheets &raquo;</li>
+      <li>Kubernetes</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/kubernetes.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
@@ -287,6 +292,12 @@ source &lt;(kubectl completion zsh)
 <p><a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl">Zsh plugin</a></p>
 <h2 id="install-kubernetes">Install Kubernetes</h2>
 <h4 id="on-linux-debian_1">On Linux (Debian)</h4>
+<p>Using community-owned package repositories (see <a href="https://kubernetes.io/blog/2023/08/15/pkgs-k8s-io-introduction/#how-to-migrate-deb">blog post</a>)</p>
+<pre><code class="language-sh">ver=$(curl -sSL https://dl.k8s.io/release/stable.txt | egrep -o &quot;[0-9]+\.[0-9]+&quot;)
+echo &quot;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$ver/deb/ /&quot; | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -sSL https://pkgs.k8s.io/core:/stable:/v$ver/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo apt-get update
+</code></pre>
 <p>kubeadm-config.yaml</p>
 <pre><code class="language-yaml">apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
@@ -364,15 +375,14 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
     
   </span>
 </div>
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "..";</script>
-    <script src="../js/theme_extra.js"></script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>
