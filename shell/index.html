@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Arthur Picerna" /><link rel="canonical" href="https://docs.ar2pi.net/shell/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Moin Uddin Ahmed" /><link rel="canonical" href="https://docs.moin-95.github.io/shell/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Shell - ar2pi</title>
+    <title>Shell - marufmoinuddin</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> ar2pi
+          <a href=".." class="icon icon-home"> marufmoinuddin
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -42,7 +42,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">About</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="..">Arthur Picerna (ar2pi)</a>
+                  <li class="toctree-l1"><a class="reference internal" href="..">Moin Uddin Ahmed (marufmoinuddin)</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Cheatsheets</span></p>
@@ -118,7 +118,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">ar2pi</a>
+          <a href="..">marufmoinuddin</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -128,7 +128,7 @@
           <li class="breadcrumb-item">Cheatsheets</li>
       <li class="breadcrumb-item active">Shell</li>
     <li class="wy-breadcrumbs-aside">
-          <a href="https://github.com/ar2pi/ar2pi/edit/main/docs/shell.md" class="icon icon-github"> Edit on GitHub</a>
+          <a href="https://github.com/marufmoinuddinedit/main/docs/shell.md" class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
   <hr/>
@@ -138,7 +138,7 @@
               
                 <h1 id="shell">Shell</h1>
 <h2 id="zshrc">.zshrc</h2>
-<p>Gist: <a href="https://gist.github.com/ar2pi/41d1d0645d6437d7b69b6e7c64e88d8e">https://gist.github.com/ar2pi/41d1d0645d6437d7b69b6e7c64e88d8e</a></p>
+<p>Gist: <a href="https://gist.github.com/marufmoinuddin/41d1d0645d6437d7b69b6e7c64e88d8e">https://gist.github.com/marufmoinuddin/41d1d0645d6437d7b69b6e7c64e88d8e</a></p>
 <h2 id="snippets">Snippets</h2>
 <p><strong><code>#!/usr/bin/env {zsh,bash}</code></strong></p>
 <h3 id="get-current-script-directory-and-filename">Get current script directory and filename</h3>
@@ -207,7 +207,7 @@ for item in &quot;${arr[@]}&quot;; do
     echo &quot;$key: $value&quot;
 done
 </code></pre>
-<p><a href="https://gist.github.com/ar2pi/99dbcbbd023867aeee089bf65014cd20">Gist</a></p>
+<p><a href="https://gist.github.com/marufmoinuddin/99dbcbbd023867aeee089bf65014cd20">Gist</a></p>
 <h3 id="parse-arguments">Parse arguments</h3>
 <pre><code class="language-bash"># single argument flag
 if [[ ! -z ${1+_} &amp;&amp; ($1 = &quot;-v&quot; || $1 = &quot;--verbose&quot;) ]]; then
@@ -287,7 +287,7 @@ function parse_args () {
     done
 }
 </code></pre>
-<p><a href="https://gist.github.com/ar2pi/0d61686e9c16671a39197139588e94c1">Gist</a></p>
+<p><a href="https://gist.github.com/marufmoinuddin/0d61686e9c16671a39197139588e94c1">Gist</a></p>
 <h3 id="load-other-bash-files">Load other bash files</h3>
 <pre><code class="language-bash">[[ -f /path/to/script.sh ]] &amp;&amp; . /path/to/script.sh
 </code></pre>
@@ -323,7 +323,7 @@ function main () {
 
 main &quot;$@&quot;
 </code></pre>
-<p><a href="https://gist.github.com/ar2pi/d19869c5ba2b2b42601124939593ae89">Gist</a></p>
+<p><a href="https://gist.github.com/marufmoinuddin/d19869c5ba2b2b42601124939593ae89">Gist</a></p>
 <h3 id="log-function">Log function</h3>
 <pre><code class="language-bash">#!/usr/bin/env bash
 
@@ -362,7 +362,7 @@ function out () {
     echo -e &quot;${color_1}❯${color_2} $msg${RST}&quot;
 }
 </code></pre>
-<p><a href="https://gist.github.com/ar2pi/b0c229afe9cd5f7d02645c8c62b5e989">Gist</a></p>
+<p><a href="https://gist.github.com/marufmoinuddin/b0c229afe9cd5f7d02645c8c62b5e989">Gist</a></p>
 <h3 id="autoload-nvmrc">Autoload .nvmrc</h3>
 <pre><code class="language-zsh">#!/usr/bin/env zsh
 
@@ -396,7 +396,7 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 </code></pre>
-<p><a href="https://gist.github.com/ar2pi/02d14fbc6e987056ae0efd301faf64de">Gist</a></p>
+<p><a href="https://gist.github.com/marufmoinuddin/02d14fbc6e987056ae0efd301faf64de">Gist</a></p>
 <h3 id="adblocksh">Adblock.sh</h3>
 <pre><code class="language-bash">#!/usr/bin/env bash
 
@@ -411,7 +411,7 @@ load-nvmrc
 cp /etc/hosts hosts.bk
 sudo sh -c &quot;curl -sSL -o - http://winhelp2002.mvps.org/hosts.txt &gt;&gt; /etc/hosts&quot;
 </code></pre>
-<p><a href="https://gist.github.com/ar2pi/25d7ffc31cb1695bef557556ded182fe">Gist</a></p>
+<p><a href="https://gist.github.com/marufmoinuddin/25d7ffc31cb1695bef557556ded182fe">Gist</a></p>
               
             </div>
           </div><footer>
@@ -440,7 +440,7 @@ sudo sh -c &quot;curl -sSL -o - http://winhelp2002.mvps.org/hosts.txt &gt;&gt; /
   <span class="rst-current-version" data-toggle="rst-current-version">
     
         <span>
-          <a href="https://github.com/ar2pi/ar2pi/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/marufmoinuddin" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
         </span>
     
     

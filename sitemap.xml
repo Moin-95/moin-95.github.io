@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://docs.ar2pi.net/</loc>
+         <loc>https://docs.moin-95.github.io/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/git/</loc>
+         <loc>https://docs.moin-95.github.io/git/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/go/</loc>
+         <loc>https://docs.moin-95.github.io/go/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/kubernetes/</loc>
+         <loc>https://docs.moin-95.github.io/kubernetes/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/linux-debian/</loc>
+         <loc>https://docs.moin-95.github.io/linux-debian/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/networking/</loc>
+         <loc>https://docs.moin-95.github.io/networking/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/poems/</loc>
+         <loc>https://docs.moin-95.github.io/poems/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/python/</loc>
+         <loc>https://docs.moin-95.github.io/python/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/shell/</loc>
+         <loc>https://docs.moin-95.github.io/shell/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/vim/</loc>
+         <loc>https://docs.moin-95.github.io/vim/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/labs/ebpf/</loc>
+         <loc>https://docs.moin-95.github.io/labs/ebpf/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/labs/local-k8s/</loc>
+         <loc>https://docs.moin-95.github.io/labs/local-k8s/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/labs/prometheus-video-renderer/</loc>
+         <loc>https://docs.moin-95.github.io/labs/prometheus-video-renderer/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
     <url>
-         <loc>https://docs.ar2pi.net/labs/wordpress-2025/</loc>
+         <loc>https://docs.moin-95.github.io/labs/wordpress-2025/</loc>
          <lastmod>2025-06-07</lastmod>
     </url>
 </urlset>
